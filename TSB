@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "heyyy... this isnt fair...",
+	Name = "Today were going to do a little trolling",
 	Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
 	LoadingTitle = "TSB troll scripts",
 	LoadingSubtitle = "by ThemanWhoYaps",
@@ -64,7 +64,7 @@ end
 
 function nptp()
 	checktargetplayer()
-	for indexi = 0, 3, 0.05 do
+	for indexi = 0, 2.5, 0.05 do
 		tpto(target, indexi)
 		task.wait(0)
 		if indexi == 0 then
@@ -115,7 +115,7 @@ end
 
 -- GUI ELEMENTS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-local skilless = Window:CreateTab("No skill", 83816122255232)
+local skilless = Window:CreateTab("Base Moveset", 97388784122794)
 
 local Input = skilless:CreateInput({
 	Name = "Target player name",
