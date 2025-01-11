@@ -121,6 +121,19 @@ function uppercuttp()
 	end
 end
 
+function seriouspunchtp()
+	checktargetplayer()
+	target = workspace.Live:FindFirstChild(target_name)
+	lc = game:GetService("Players").LocalPlayer.Character
+	for indexi = 0, 2, 0.05 do
+			local offsetCFrame = CFrame.new(0, 2 - i, 3)
+			lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+			lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 10)
+			lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		end
+	end
+end
+
 function checktargetplayer()
 	if workspace.Live:FindFirstChild(target_name) == nil then
 		Rayfield:Notify({
@@ -135,6 +148,7 @@ end
 -- GUI ELEMENTS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 local skilless = Window:CreateTab("Base Moveset", 112168009464658)
+local funnyman = Window:CreateTab("Ultimate Moveset", 112168009464658)
 
 local Input = skilless:CreateInput({
 	Name = "Target player name",
@@ -182,5 +196,16 @@ local Button = skilless:CreateButton({
 		target = workspace.Live:FindFirstChild(target_name)
 		lc = game:GetService("Players").LocalPlayer.Character
 		uppercuttp()
+	end,
+})
+
+
+
+local Button = funnyman:CreateButton({
+	Name = "Serious Punch",
+	Callback = function()
+		target = workspace.Live:FindFirstChild(target_name)
+		lc = game:GetService("Players").LocalPlayer.Character
+		serouspunchtp()
 	end,
 })
