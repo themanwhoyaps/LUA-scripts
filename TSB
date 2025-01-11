@@ -57,7 +57,7 @@ end
 function tptoserious(targettp)
 	local offsetCFrame = CFrame.new(0, 20, 0)
 	lc.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
-	lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 4.75, 0)
+	lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 4.75, 4.75)
 	lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 end
 
