@@ -65,7 +65,7 @@ end
 
 function tptostand()
 	local lc = game:GetService("Players").LocalPlayer.Character
-	local target = workspace.Live:FindFirstChild(target_name)
+	local target = workspace.Live:FindFirstChild(return_name)
 	local offsetCFrame = CFrame.new(3, 1, 4.5)
 	lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
 	lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 9.5)
@@ -197,7 +197,7 @@ local Input = skilless:CreateInput({
 })
 
 local Toggle = skilless:CreateToggle({
-	Name = "do return player (stand) 1.1",
+	Name = "do return player (stand) 1.2",
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
