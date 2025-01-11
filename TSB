@@ -141,6 +141,18 @@ function seriouspunctp()
 		lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
 		lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 10)
 		lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		if indexi == 0 then
+			local seriouspunch = {
+				[1] = {
+					["Tool"] = game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Serious Punch"),
+					["Goal"] = "Console Move"
+				}
+			}
+
+			game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(seriouspunch))
+
+		end
+		task.wait(0)
 	end
 end	
 
