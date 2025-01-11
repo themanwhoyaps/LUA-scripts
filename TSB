@@ -131,19 +131,18 @@ function uppercuttp()
 		end
 	end
 end
-
-function seriouspunchtp()
+	
+function seriouspunctp()
 	checktargetplayer()
 	target = workspace.Live:FindFirstChild(target_name)
 	lc = game:GetService("Players").LocalPlayer.Character
 	for indexi = 0, 50, 1 do
-			local offsetCFrame = CFrame.new(0, 2, 3)
-			lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
-			lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 10)
-			lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		end	
+		local offsetCFrame = CFrame.new(0, 2, 3)
+		lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+		lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 10)
+		lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 	end
-end
+end	
 
 -- GUI ELEMENTS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
