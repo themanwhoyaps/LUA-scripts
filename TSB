@@ -35,6 +35,8 @@ local Window = Rayfield:CreateWindow({
 })
 
 target_name = "Weakest Dummy"
+return_name = "Weakest Dummy"
+do_return = false
 
 function checktargetplayer()
 	if workspace.Live:FindFirstChild(target_name) == nil then
@@ -58,6 +60,13 @@ function tptoserious(targettp)
 	local offsetCFrame = CFrame.new(0, 18, 0)
 	lc.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
 	lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(-1.3, 0, 0)
+	lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+end
+
+function tptostand(targettp)
+	local offsetCFrame = CFrame.new(3, 1, 4.5)
+	lc.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+	lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 9.5)
 	lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 end
 
@@ -174,6 +183,26 @@ local Input = skilless:CreateInput({
 	end,
 })
 
+local Input = skilless:CreateInput({
+	Name = "Return player name",
+	CurrentValue = "Weakest Dummy",
+	PlaceholderText = "@username btw",
+	RemoveTextAfterFocusLost = false,
+	Flag = "Input2",
+	Callback = function(Text)
+		return_name = Text
+	end,
+})
+
+local Toggle = skilless:CreateToggle({
+	Name = "Toggle Example",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		do_return = Value
+	end,
+})
+
 local Divider = skilless:CreateDivider()
 
 local Button = skilless:CreateButton({
@@ -212,8 +241,6 @@ local Button = skilless:CreateButton({
 	end,
 })
 
-
-
 local Button = funnyman:CreateButton({
 	Name = "Serious Punch",
 	Callback = function()
@@ -222,3 +249,8 @@ local Button = funnyman:CreateButton({
 		seriouspunchtp()
 	end,
 })
+
+while do_return == true do
+	tptostand(target)
+	task.wait(0)
+end
