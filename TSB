@@ -199,6 +199,7 @@ local Toggle = skilless:CreateToggle({
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
+		lc = game:GetService("Players").LocalPlayer.Character
 		do_return = not do_return
 		while nil == nil do
 			if do_return == true then
