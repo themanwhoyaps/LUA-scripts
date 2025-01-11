@@ -199,7 +199,15 @@ local Toggle = skilless:CreateToggle({
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
-		do_return = Value
+		do_return = not do_return
+		while nil == nil do
+			if do_return == true then
+				tptostand(target)
+				task.wait(0)
+			else
+				break
+			end
+		end
 	end,
 })
 
@@ -249,8 +257,3 @@ local Button = funnyman:CreateButton({
 		seriouspunchtp()
 	end,
 })
-
-while do_return == true do
-	tptostand(target)
-	task.wait(0)
-end
