@@ -132,7 +132,7 @@ function uppercuttp()
 	end
 end
 	
-function seriouspunctp()
+function seriouspunchtp()
 	checktargetplayer()
 	target = workspace.Live:FindFirstChild(target_name)
 	lc = game:GetService("Players").LocalPlayer.Character
