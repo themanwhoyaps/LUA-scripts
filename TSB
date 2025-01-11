@@ -102,6 +102,25 @@ function punchestp()
 	end
 end
 
+function uppercuttp()
+	checktargetplayer()
+	for indexi = 0, 3, 0.05 do
+		tpto(target, indexi)
+		task.wait(0)
+		if indexi == 0 then
+			local uppercutdata = {
+				[1] = {
+					["Tool"] = game:GetService("Players").LocalPlayer.Backpack.Uppercut,
+					["Goal"] = "Console Move"
+				}
+			}
+
+			game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(uppercutdata))
+
+		end
+	end
+end
+
 function checktargetplayer()
 	if workspace.Live:FindFirstChild(target_name) == nil then
 		Rayfield:Notify({
@@ -115,7 +134,7 @@ end
 
 -- GUI ELEMENTS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-local skilless = Window:CreateTab("Base Moveset", 97388784122794)
+local skilless = Window:CreateTab("Base Moveset", 112168009464658)
 
 local Input = skilless:CreateInput({
 	Name = "Target player name",
@@ -154,5 +173,14 @@ local Button = skilless:CreateButton({
 		target = workspace.Live:FindFirstChild(target_name)
 		lc = game:GetService("Players").LocalPlayer.Character
 		shovetp()
+	end,
+})
+
+local Button = skilless:CreateButton({
+	Name = "Uppercut",
+	Callback = function()
+		target = workspace.Live:FindFirstChild(target_name)
+		lc = game:GetService("Players").LocalPlayer.Character
+		uppercuttp()
 	end,
 })
