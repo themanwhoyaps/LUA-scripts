@@ -36,6 +36,17 @@ local Window = Rayfield:CreateWindow({
 
 target_name = "Weakest Dummy"
 
+function checktargetplayer()
+	if workspace.Live:FindFirstChild(target_name) == nil then
+		Rayfield:Notify({
+			Title = "Player specified does not exist.",
+			Content = "Maybe check for stupidly complicated characters in the username.",
+			Duration = 5,
+			Image = 10724129940,
+		})
+	end
+end
+
 function tpto(targettp, i)
 	local offsetCFrame = CFrame.new(0, 2 - i, 3)
 	lc.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
@@ -125,23 +136,12 @@ function seriouspunchtp()
 	checktargetplayer()
 	target = workspace.Live:FindFirstChild(target_name)
 	lc = game:GetService("Players").LocalPlayer.Character
-	for indexi = 0, 2, 0.05 do
-			local offsetCFrame = CFrame.new(0, 2 - i, 3)
+	for indexi = 0, 50, 1 do
+			local offsetCFrame = CFrame.new(0, 2, 3)
 			lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
 			lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 10)
 			lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		end
-	end
-end
-
-function checktargetplayer()
-	if workspace.Live:FindFirstChild(target_name) == nil then
-		Rayfield:Notify({
-			Title = "Player specified does not exist.",
-			Content = "Maybe check for stupidly complicated characters in the username.",
-			Duration = 5,
-			Image = 10724129940,
-		})
+		end	
 	end
 end
 
