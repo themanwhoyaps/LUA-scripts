@@ -104,7 +104,7 @@ end
 
 function uppercuttp()
 	checktargetplayer()
-	for indexi = 0, 3, 0.05 do
+	for indexi = 0, 2, 0.05 do
 		tpto(target, indexi)
 		task.wait(0)
 		if indexi == 0 then
