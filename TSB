@@ -217,6 +217,6 @@ local Button = funnyman:CreateButton({
 	Callback = function()
 		target = workspace.Live:FindFirstChild(target_name)
 		lc = game:GetService("Players").LocalPlayer.Character
-		serouspunchtp()
+		seriouspunchtp()
 	end,
 })
