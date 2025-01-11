@@ -82,6 +82,26 @@ function nptp()
 	end
 end
 
+function punchestp()
+	checktargetplayer()
+	for indexi = 0, 3, 0.05 do
+		tpto(target, indexi)
+		task.wait(0)
+		if indexi == 0 then
+			local consecutivepunchescommands = {
+				[1] = {
+					["Tool"] = game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Consecutive Punches"),
+					["Goal"] = "Console Move",
+					["ToolName"] = "Consecutive Punches"
+				}
+			}
+
+			game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(consecutivepunchescommands))
+
+		end
+	end
+end
+
 function checktargetplayer()
 	if workspace.Live:FindFirstChild(target_name) == nil then
 		Rayfield:Notify({
@@ -116,6 +136,15 @@ local Button = skilless:CreateButton({
 		target = workspace.Live:FindFirstChild(target_name)
 		lc = game:GetService("Players").LocalPlayer.Character
 		nptp()
+	end,
+})
+
+local Button = skilless:CreateButton({
+	Name = "Consecutive",
+	Callback = function()
+		target = workspace.Live:FindFirstChild(target_name)
+		lc = game:GetService("Players").LocalPlayer.Character
+		punchestp()
 	end,
 })
 
