@@ -54,6 +54,13 @@ function tpto(targettp, i)
 	lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 end
 
+function tptoserious()
+	local offsetCFrame = CFrame.new(0, 2, 3)
+	lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+	lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 9.5)
+	lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+end
+
 function shovetp()
 	checktargetplayer()
 	for indexi = 0, 2, 0.05 do
@@ -134,13 +141,9 @@ end
 	
 function seriouspunchtp()
 	checktargetplayer()
-	target = workspace.Live:FindFirstChild(target_name)
-	lc = game:GetService("Players").LocalPlayer.Character
 	for indexi = 0, 50, 1 do
-		local offsetCFrame = CFrame.new(0, 2, 3)
-		lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
-		lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 10)
-		lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		seriouspunchtp()
+		task.wait(0)
 		if indexi == 0 then
 			local seriouspunch = {
 				[1] = {
@@ -152,7 +155,6 @@ function seriouspunchtp()
 			game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(seriouspunch))
 
 		end
-		task.wait(0)
 	end
 end	
 
