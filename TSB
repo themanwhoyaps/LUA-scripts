@@ -195,7 +195,7 @@ local Input = skilless:CreateInput({
 })
 
 local Toggle = skilless:CreateToggle({
-	Name = "Toggle Example",
+	Name = "do return player (stand)",
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
