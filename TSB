@@ -54,9 +54,9 @@ function tpto(targettp, i)
 	lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 end
 
-function tptoserious()
+function tptoserious(targettp)
 	local offsetCFrame = CFrame.new(0, 2, 3)
-	lc.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+	lc.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
 	lc.HumanoidRootPart.CFrame *= CFrame.fromEulerAngles(0, 0, 9.5)
 	lc.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 end
@@ -142,7 +142,7 @@ end
 function seriouspunchtp()
 	checktargetplayer()
 	for indexi = 0, 50, 1 do
-		seriouspunchtp()
+		tptoserious(target)
 		task.wait(0)
 		if indexi == 0 then
 			local seriouspunch = {
