@@ -141,7 +141,7 @@ end
 	
 function seriouspunchtp()
 	checktargetplayer()
-	for indexi = 0, 500, 1 do
+	for indexi = 0, 5000, 1 do
 		tptoserious(target)
 		task.wait(0)
 		if indexi == 0 then
