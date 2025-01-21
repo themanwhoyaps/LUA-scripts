@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [1.1]",
+	Name = "SB mastery gui [1.2]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -39,14 +39,18 @@ if game.PlaceId ~= 6403373529 then
 end
 
 -- variables
-
-local player = game.Players.LocalPlayer
-local Character = player.Character
+player = game.Players.LocalPlayer
+Character = player.Character
 local setup = Window:CreateTab("Setup", "blocks")
 local farm = Window:CreateTab("Farming", "workflow")
 local misc = Window:CreateTab("Other Essentials", "settings-2")
 
 -- functions
+
+function grabcharacter()
+	player = game.Players.LocalPlayer
+	Character = player.Character
+end
 
 function checkinarena()
 	if workspace:FindFirstChild(Character.Name).isInArena.Value == false then
@@ -98,6 +102,7 @@ local Button2 = setup:CreateButton({
 local Button3 = setup:CreateButton({
 	Name = "Teleport to safezone",
 	Callback = function()
+		grabcharacter()
 		if workspace:FindFirstChild("mastery_floor") == nil then
 			Rayfield:Notify({
 				Title = "Error",
@@ -116,6 +121,7 @@ local setupsect2 = setup:CreateSection("Obby")
 local Button1 = setup:CreateButton({
 	Name = "Place Killbricks",
 	Callback = function()
+		grabcharacter()
 		local activate = checkinarena()
 		local hasglove = checkforglove("Obby")
 		if activate and hasglove then
