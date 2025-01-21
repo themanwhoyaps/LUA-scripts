@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [1.3]",
+	Name = "SB mastery gui [1.4]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -87,7 +87,7 @@ end
 local setupsect = setup:CreateSection("All Gloves")
 
 local Button2 = setup:CreateButton({
-	Name = "Generate safezone",
+	Name = "Generate Safezone",
 	Callback = function()
 		if workspace:FindFirstChild("mastery_floor") == nil then
 			local floor = Instance.new("Part", workspace)
@@ -109,7 +109,7 @@ local Button2 = setup:CreateButton({
 })
 
 local Button3 = setup:CreateButton({
-	Name = "Teleport to safezone",
+	Name = "Teleport To Safezone",
 	Callback = function()
 		grabcharacter()
 		if workspace:FindFirstChild("mastery_floor") == nil then
@@ -243,3 +243,19 @@ local Button1 = setup:CreateButton({
 })
 
 -- gui elements // farming
+
+-- gui elements // misc
+
+local Button5 = misc:CreateButton({
+	Name = "Shut Down Hub",
+	Callback = function()
+		Rayfield:Destroy()
+	end,
+})
+
+local Button4 = misc:CreateButton({
+	Name = "Execute Infinite Yeild",
+	Callback = function()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Infinite-Yeild-4388"))()
+	end,
+})
