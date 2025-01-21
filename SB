@@ -1,0 +1,150 @@
+-- max time: 3
+-- 13.8588505, -5.17285204, -3.96675038, -0.251725495, -1.07415012e-07, 0.96779865, 2.8105493e-08, 1, 1.18299269e-07, -0.96779865, 5.69794025e-08, -0.251725495
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "SB mastery and sh",
+	LoadingTitle = "Im loading pls wait",
+	LoadingSubtitle = "By @ThemanWhoYaps",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil, 
+		FileName = "Example Hub"
+	},
+	Discord = {
+		Enabled = false,
+		Invite = "noinvitelink", 
+		RememberJoins = true 
+	},
+	KeySystem = false, 
+	KeySettings = {
+		Title = "Key | Youtube Hub",
+		Subtitle = "Key System",
+		Note = "Key In Discord Server",
+		FileName = "YoutubeHubKey1",
+		SaveKey = false,
+		GrabKeyFromSite = true, 
+		Key = {"https://pastebin.com/raw/AtgzSPWK"} 
+	}
+})
+
+if game.PlaceId ~= 6403373529 then
+	Rayfield:Notify({
+		Title = "This isnt a universal script",
+		Content = "wrong game bozo",
+		Duration = 5,
+		Image = "angry",
+	})
+end
+
+-- variables
+
+local player = game.Players.LocalPlayer
+local Character = player.Character
+local setup = Window:CreateTab("Setup", "blocks")
+local farm = Window:CreateTab("Farming", "workflow")
+local misc = Window:CreateTab("Other Essentials", "settings-2")
+
+-- functions
+
+function checkinarena()
+	if workspace:FindFirstChild(Character.Name).isInArena.Value == false then
+		Rayfield:Notify({
+			Title = "Error",
+			Content = "Enter the arena first.",
+			Duration = 3,
+			Image = "triangle-alert",
+		})
+	end
+	return workspace:FindFirstChild(Character.Name).isInArena.Value
+end
+
+function checkforglove(glove_name)
+	local functincharacter = workspace:FindFirstChild(Character.Name)
+	local returnvalue = nil
+	if functincharacter:FindFirstChild(glove_name) == nil then
+		Rayfield:Notify({
+			Title = "Error",
+			Content = "Equip Obby.",
+			Duration = 3,
+			Image = "triangle-alert",
+		})
+		returnvalue = false
+	else
+		returnvalue = true
+	end
+	
+	return returnvalue
+end
+
+-- gui elements // setup
+
+local setupsect = setup:CreateSection("All Gloves")
+
+local Button2 = setup:CreateButton({
+	Name = "Generate safezone",
+	Callback = function()
+		local floor = Instance.new("Part", workspace)
+		floor.Anchored = true
+		floor.Transparency = 0
+		floor.CFrame = CFrame.new(0, 300, 100000)
+		floor.Size = Vector3.new(300, 20, 300)
+		floor.BrickColor = BrickColor.new("Shamrock")
+		floor.Name = "mastery_floor"
+	end,
+})
+
+local Button3 = setup:CreateButton({
+	Name = "Teleport to safezone",
+	Callback = function()
+		if workspace:FindFirstChild("mastery_floor") == nil then
+			Rayfield:Notify({
+				Title = "Error",
+				Content = "Generate a safezone first.",
+				Duration = 3,
+				Image = "triangle-alert",
+			})
+		else
+			Character.HumanoidRootPart.CFrame = CFrame.new(0, 305, 100000)
+		end
+	end,
+})
+
+local setupsect2 = setup:CreateSection("Obby")
+
+local Button1 = setup:CreateButton({
+	Name = "Place Killbricks",
+	Callback = function()
+		local activate = checkinarena()
+		local hasglove = checkforglove("Obby")
+		if activate and hasglove then
+			local returncframe = Character.HumanoidRootPart.CFrame
+			Character.HumanoidRootPart.CFrame = CFrame.new(13.8588505, -5.17285204, -3.96675038, -0.251725495, -1.07415012e-07, 0.96779865, 2.8105493e-08, 1, 1.18299269e-07, -0.96779865, 5.69794025e-08, -0.251725495)
+			task.wait(0.15)
+			local args = {
+				[1] = CFrame.new(7.568159103393555, -7.872851848602295, -2.3305346965789795, -0.2517254948616028, 1.5977899892050118e-08, 0.96779865026474, -8.3714972731741e-08, 1, -3.828388273063865e-08, -0.96779865026474, -9.065626471738142e-08, -0.2517254948616028),
+				[2] = 1
+			}
+			
+			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+			task.wait(0)
+			Character.HumanoidRootPart.CFrame = returncframe
+			
+			task.wait(3)
+			
+			Character.HumanoidRootPart.CFrame = CFrame.new(2.18486404, -5.17285252, -32.4907532, -0.99735111, 4.45471171e-09, 0.072737366, 7.39653183e-09, 1, 4.01750562e-08, -0.072737366, 4.06066434e-08, -0.99735111)
+			task.wait(0.15)
+			local args = {
+				[1] = CFrame.new(1.712071180343628, -7.872852325439453, -26.007970809936523, -0.9973511099815369, -5.678246761675609e-10, 0.07273736596107483, -9.43105038508918e-10, 1, -5.125043056608547e-09, -0.07273736596107483, -5.1800665978873894e-09, -0.9973511099815369),
+				[2] = 1
+			}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+			task.wait(0)
+			Character.HumanoidRootPart.CFrame = returncframe
+		end
+	end,
+})
+
+-- gui elements // farming
