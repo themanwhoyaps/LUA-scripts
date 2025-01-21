@@ -119,9 +119,17 @@ local Button1 = setup:CreateButton({
 		local activate = checkinarena()
 		local hasglove = checkforglove("Obby")
 		if activate and hasglove then
+			
+			Rayfield:Notify({
+				Title = "Info",
+				Content = "This setup process has started.",
+				Duration = 3,
+				Image = "message-square",
+			})
+			
 			local returncframe = Character.HumanoidRootPart.CFrame
 			Character.HumanoidRootPart.CFrame = CFrame.new(13.8588505, -5.17285204, -3.96675038, -0.251725495, -1.07415012e-07, 0.96779865, 2.8105493e-08, 1, 1.18299269e-07, -0.96779865, 5.69794025e-08, -0.251725495)
-			task.wait(0.15)
+			task.wait(0.2)
 			local args = {
 				[1] = CFrame.new(7.568159103393555, -7.872851848602295, -2.3305346965789795, -0.2517254948616028, 1.5977899892050118e-08, 0.96779865026474, -8.3714972731741e-08, 1, -3.828388273063865e-08, -0.96779865026474, -9.065626471738142e-08, -0.2517254948616028),
 				[2] = 1
@@ -134,7 +142,7 @@ local Button1 = setup:CreateButton({
 			task.wait(3)
 
 			Character.HumanoidRootPart.CFrame = CFrame.new(2.18486404, -5.17285252, -32.4907532, -0.99735111, 4.45471171e-09, 0.072737366, 7.39653183e-09, 1, 4.01750562e-08, -0.072737366, 4.06066434e-08, -0.99735111)
-			task.wait(0.15)
+			task.wait(0.2)
 			local args = {
 				[1] = CFrame.new(1.712071180343628, -7.872852325439453, -26.007970809936523, -0.9973511099815369, -5.678246761675609e-10, 0.07273736596107483, -9.43105038508918e-10, 1, -5.125043056608547e-09, -0.07273736596107483, -5.1800665978873894e-09, -0.9973511099815369),
 				[2] = 1
@@ -147,7 +155,7 @@ local Button1 = setup:CreateButton({
 			task.wait(3)
 
 			Character.HumanoidRootPart.CFrame = CFrame.new(-37.7717857, -5.17285204, -2.64133406, 0.409333974, 3.55067158e-08, -0.912384629, 2.08760476e-08, 1, 4.828226e-08, 0.912384629, -3.88105548e-08, 0.409333974)
-			task.wait(0.15)
+			task.wait(0.2)
 			local args = {
 				[1] = CFrame.new(-31.841285705566406, -7.872851848602295, -5.302004814147949, 0.4093339741230011, -1.3950836041942694e-08, -0.9123846292495728, -8.251772598555362e-09, 1, -1.8992611927615144e-08, 0.9123846292495728, 1.5303111666753466e-08, 0.4093339741230011),
 				[2] = 1
@@ -160,7 +168,7 @@ local Button1 = setup:CreateButton({
 			task.wait(3)
 
 			Character.HumanoidRootPart.CFrame = CFrame.new(-14.9643373, -5.17285204, 16.1391811, 0.998678148, -5.57225288e-09, -0.0514004156, 6.3798149e-09, 1, 1.55471245e-08, 0.0514004156, -1.58544982e-08, 0.998678148)
-			task.wait(0.15)
+			task.wait(0.2)
 			local args = {
 				[1] = CFrame.new(-14.630234718322754, -7.872851371765137, 9.647773742675781, 0.9986781477928162, 2.19217000108074e-08, -0.05140041559934616, -2.509983332288357e-08, 1, -6.118540341049084e-08, 0.05140041559934616, 6.239466898705359e-08, 0.9986781477928162),
 				[2] = 1
@@ -173,7 +181,7 @@ local Button1 = setup:CreateButton({
 			task.wait(3)
 			
 			Character.HumanoidRootPart.CFrame = CFrame.new(-18.2541218, -5.17285204, -18.2538872, 0.88730222, -4.93852337e-09, 0.461188376, -7.00794134e-09, 1, 2.41911682e-08, -0.461188376, -2.46968579e-08, 0.88730222)
-			task.wait(0.15)
+			task.wait(0.2)
 			local args = {
 				[1] = CFrame.new(-21.251846313476562, -7.872851848602295, -24.021350860595703, 0.8873022198677063, 5.391833646228861e-09, 0.4611883759498596, 7.648431221696228e-09, 1, -2.640635266004665e-08, -0.4611883759498596, 2.695778356098799e-08, 0.8873022198677063),
 				[2] = 1
@@ -182,6 +190,39 @@ local Button1 = setup:CreateButton({
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
 			task.wait(0)
 			Character.HumanoidRootPart.CFrame = returncframe
+			
+			task.wait(3)
+			
+			Character.HumanoidRootPart.CFrame = CFrame.new(-22.4971104, -5.17285204, -0.740897477, 0.99995923, 6.23151379e-08, 0.00903294887, -6.22680005e-08, 1, -5.49942225e-09, -0.00903294887, 4.93673413e-09, 0.99995923)
+			task.wait(0.2)
+			local args = {
+				[1] = CFrame.new(-22.555824279785156, -7.872852325439453, -7.2406325340271, 0.9999592304229736, -3.880641585851663e-08, 0.00903294887393713, 3.8777340449769326e-08, 1, 3.3941001120751935e-09, -0.00903294887393713, -3.043687746284718e-09, 0.9999592304229736),
+				[2] = 2
+			}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+			task.wait(0)
+			Character.HumanoidRootPart.CFrame = returncframe
+			
+			task.wait(3)
+			
+			Character.HumanoidRootPart.CFrame = CFrame.new(-6.23772335, -5.17285204, 0.0253672525, 0.996048927, -2.18098606e-08, -0.0888063461, 1.5915278e-08, 1, -6.7083775e-08, 0.0888063461, 6.54053451e-08, 0.996048927)
+			task.wait(0.2)
+			local args = {
+				[1] = CFrame.new(-5.660482406616211, -7.872852325439453, -6.448943138122559, 0.9960489273071289, 1.6686085402284334e-08, -0.08880634605884552, -1.2174771413242524e-08, 1, 5.134111802362895e-08, 0.08880634605884552, -5.0057067824127444e-08, 0.9960489273071289),
+				[2] = 2
+			}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+			task.wait(0)
+			Character.HumanoidRootPart.CFrame = returncframe
+			
+			Rayfield:Notify({
+				Title = "Info",
+				Content = "This setup process has ended.",
+				Duration = 3,
+				Image = "message-square",
+			})
 		end
 	end,
 })
