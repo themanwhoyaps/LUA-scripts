@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [1.4]",
+	Name = "SB mastery gui [1.5]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
