@@ -39,6 +39,8 @@ if game.PlaceId ~= 6403373529 then
 end
 
 -- variables
+
+activatedtoggle1 = false
 player = game.Players.LocalPlayer
 Character = player.Character
 local setup = Window:CreateTab("Setup", "blocks")
@@ -243,6 +245,33 @@ local Button1 = setup:CreateButton({
 })
 
 -- gui elements // farming
+
+local Toggle1 = farm:CreateToggle({
+	Name = "Auto Place Parts",
+	CurrentValue = false,
+	Flag = "Obby1", 
+	Callback = function(Value)
+		activatedtoggle1 = not activatedtoggle1
+		while nil == nil do
+			if activatedtoggle1 == true then
+				local returncframe = Character.HumanoidRootPart.CFrame
+				Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
+				task.wait(0.2)
+				local args = {
+					[1] = CFrame.new(-398.04742431640625, 48.44138717651367, 19.950355529785156, -0.9937394857406616, -3.341312648785788e-08, -0.11172236502170563, -2.667190912575279e-08, 1, -6.183360312661534e-08, 0.11172236502170563, -5.8466646635224606e-08, -0.9937394857406616),
+					[2] = 3
+				}
+
+				game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+				task.wait(0)
+				Character.HumanoidRootPart.CFrame = returncframe
+				task.wait(300)
+			else
+				break
+			end
+		end
+	end,
+})
 
 -- gui elements // misc
 
