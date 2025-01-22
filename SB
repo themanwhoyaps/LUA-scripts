@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [2.5]",
+	Name = "SB mastery gui [2.6]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -247,8 +247,9 @@ local Button1 = setup:CreateButton({
 local Button5 = setup:CreateButton({
 	Name = "Delete Killbricks in Tower",
 	Callback = function()
+		local parentthingy = workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]
 		grabcharacter()
-		if workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[8] == nil then
+		if parentthingy:GetChildren()[8] == nil then
 			Rayfield:Notify({
 				Title = "Error",
 				Content = "You already did this!.",
@@ -256,7 +257,7 @@ local Button5 = setup:CreateButton({
 				Image = "triangle-alert",
 			})
 		else
-			for i = Instance, pairs(workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()) do
+			for i = Instance, pairs(parentthingy:GetChildren()) do
 				Instance:Destroy()
 			end
 		end
