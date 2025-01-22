@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [1.7]",
-	LoadingTitle = "tysm for using my script :D",
+	Name = "SB mastery gui [1.8]",
+	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -278,7 +278,7 @@ local Toggle1 = farm:CreateToggle({
 local Toggle2 = farm:CreateToggle({
 	Name = "[1 min cd] Auto Place Parts",
 	CurrentValue = false,
-	Flag = "Obby1", 
+	Flag = "Obby2", 
 	Callback = function(Value)
 		activatedtoggle1 = not activatedtoggle1
 		while nil == nil do
@@ -305,7 +305,7 @@ local Toggle2 = farm:CreateToggle({
 local Toggle3 = farm:CreateToggle({
 	Name = "[3 sec cd RISKY!!] Auto Place Parts",
 	CurrentValue = false,
-	Flag = "Obby1", 
+	Flag = "Obby3", 
 	Callback = function(Value)
 		activatedtoggle1 = not activatedtoggle1
 		while nil == nil do
