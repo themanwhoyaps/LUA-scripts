@@ -329,7 +329,7 @@ local Toggle3 = farm:CreateToggle({
 	end,
 })
 
-local Button5 = misc:CreateButton({
+local Button5 = farm:CreateButton({
 	Name = "[THIS WILL KICK YOU] Spam Parts",
 	Callback = function()
 		Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
