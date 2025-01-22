@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [1.6]",
+	Name = "SB mastery gui [1.7]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -246,7 +246,7 @@ local Button1 = setup:CreateButton({
 
 -- gui elements // farming
 
-local farmingsect1 = setup:CreateSection("Obby")
+local farmingsect1 = farm:CreateSection("Obby")
 
 local Toggle1 = farm:CreateToggle({
 	Name = "[5 min cd] Auto Place Parts",
