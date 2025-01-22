@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [2.7]",
+	Name = "SB mastery gui [2.8]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -261,7 +261,6 @@ local Button5 = setup:CreateButton({
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"].FillPart:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[4]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[2]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[6]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[5]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[7]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[3]:Destroy()
@@ -361,7 +360,7 @@ local Toggle4 = farm:CreateToggle({
 	Callback = function(Value)
 		activatedtoggle1 = not activatedtoggle1
 		if workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[8] == nil then
-			Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
+			Character.HumanoidRootPart.CFrame = CFrame.new(304.013977, 33.6846275, 189.222794, 0.245372355, -5.88656512e-10, 0.969428897, 1.2375535e-09, 1, 2.93982449e-10, -0.969428897, 1.12758503e-09, 0.245372355)
 			task.wait(0.2)
 			while nil == nil do
 				if activatedtoggle1 == true then
