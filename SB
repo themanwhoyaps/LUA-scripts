@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [2.8]",
-	LoadingTitle = "Im loading pls wait",
+	Name = "SB mastery gui [2.9]",
+	LoadingTitle = "skibidi toilet or creeper",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -258,12 +258,13 @@ local Button5 = setup:CreateButton({
 			})
 		else
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[8]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"].FillPart:Destroy()
+			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[1]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[4]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[2]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[5]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[7]:Destroy()
 			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[3]:Destroy()
+			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[6]:Destroy()
 		end
 	end,
 })
