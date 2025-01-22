@@ -341,6 +341,7 @@ local Button5 = farm:CreateButton({
 			}
 
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+			task.wait(0)
 		end
 	end,
 })
