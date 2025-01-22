@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [2.1]",
+	Name = "SB mastery gui [2.2]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -333,7 +333,7 @@ local Button5 = farm:CreateButton({
 	Name = "[THIS WILL KICK YOU] Spam Parts",
 	Callback = function()
 		Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
-		task.wait(0.2)
+		task.wait(0.5)
 		
 		for i = 1, 2000, 1 do
 			local args = {
@@ -342,6 +342,7 @@ local Button5 = farm:CreateButton({
 			}
 
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+			task.wait(0)
 		end
 	end,
 })
