@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [1.8]",
+	Name = "SB mastery gui [1.9]",
 	LoadingTitle = "Im loading pls wait",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -329,6 +329,22 @@ local Toggle3 = farm:CreateToggle({
 	end,
 })
 
+local Button5 = misc:CreateButton({
+	Name = "[THIS WILL KICK YOU] Spam Parts",
+	Callback = function()
+		Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
+		task.wait(0.2)
+		while nil == nil do
+			local args = {
+				[1] = CFrame.new(-398.04742431640625, 48.44138717651367, 19.950355529785156, -0.9937394857406616, -3.341312648785788e-08, -0.11172236502170563, -2.667190912575279e-08, 1, -6.183360312661534e-08, 0.11172236502170563, -5.8466646635224606e-08, -0.9937394857406616),
+				[2] = 3
+			}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+		end
+	end,
+})
+
 -- gui elements // misc
 
 local Button5 = misc:CreateButton({
@@ -341,6 +357,6 @@ local Button5 = misc:CreateButton({
 local Button4 = misc:CreateButton({
 	Name = "Execute Infinite Yeild",
 	Callback = function()
-		loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Infinite-Yeild-4388"))()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Infinite-Yield_500"))()
 	end,
 })
