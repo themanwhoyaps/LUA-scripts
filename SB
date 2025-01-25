@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.1]",
-	LoadingTitle = "big update fr fr",
+	Name = "SB mastery gui [3.2]",
+	LoadingTitle = "first button that is instant!!!",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -373,11 +373,11 @@ local Toggle4 = farm:CreateToggle({
 
 local farmingsect2 = farm:CreateSection("Glovel")
 
-local Button5 = setup:CreateButton({
+local Button5 = farm:CreateButton({
 	Name = "Get dig quest [instant]",
 	Callback = function()
 		for i = 1, 350, 1 do
-			game:GetService("ReplicatedStorage"):WaitForChild("GlovelFunc"):InvokeServer()
+			coroutine.wrap(function() game:GetService("ReplicatedStorage"):WaitForChild("GlovelFunc"):InvokeServer() end)()
 			task.wait(0)
 		end
 	end,
