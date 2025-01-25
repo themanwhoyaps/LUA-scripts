@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.0]",
-	LoadingTitle = "skibidi toilet or creeper??",
+	Name = "SB mastery gui [3.1]",
+	LoadingTitle = "big update fr fr",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -41,6 +41,10 @@ end
 -- variables
 
 activatedtoggle1 = false
+activatedtoggle2 = false
+activatedtoggle3 = false
+activatedtoggle4 = false
+activatedtoggle5 = false
 player = game.Players.LocalPlayer
 Character = player.Character
 local setup = Window:CreateTab("Setup", "blocks")
@@ -59,7 +63,7 @@ function checkinarena()
 		Rayfield:Notify({
 			Title = "Error",
 			Content = "Enter the arena first.",
-			Duration = 3,
+			Duration = 5,
 			Image = "triangle-alert",
 		})
 	end
@@ -72,8 +76,8 @@ function checkforglove(glove_name)
 	if functincharacter:FindFirstChild(glove_name) == nil then
 		Rayfield:Notify({
 			Title = "Error",
-			Content = "Equip Obby.",
-			Duration = 3,
+			Content = "Equip ", glove_name, ".",
+			Duration = 5,
 			Image = "triangle-alert",
 		})
 		returnvalue = false
@@ -103,7 +107,7 @@ local Button2 = setup:CreateButton({
 			Rayfield:Notify({
 				Title = "Error",
 				Content = "You have already generated this.",
-				Duration = 3,
+				Duration = 5,
 				Image = "triangle-alert",
 			})
 		end
@@ -118,7 +122,7 @@ local Button3 = setup:CreateButton({
 			Rayfield:Notify({
 				Title = "Error",
 				Content = "Generate a safezone first.",
-				Duration = 3,
+				Duration = 5,
 				Image = "triangle-alert",
 			})
 		else
@@ -129,7 +133,7 @@ local Button3 = setup:CreateButton({
 
 local setupsect2 = setup:CreateSection("Obby")
 
-local Button1 = setup:CreateButton({
+local Button4 = setup:CreateButton({
 	Name = "Place Killbricks",
 	Callback = function()
 		grabcharacter()
@@ -140,7 +144,7 @@ local Button1 = setup:CreateButton({
 			Rayfield:Notify({
 				Title = "Info",
 				Content = "This setup process has started.",
-				Duration = 3,
+				Duration = 5,
 				Image = "message-square",
 			})
 			
@@ -237,33 +241,9 @@ local Button1 = setup:CreateButton({
 			Rayfield:Notify({
 				Title = "Info",
 				Content = "This setup process has ended.",
-				Duration = 3,
+				Duration = 5,
 				Image = "message-square",
 			})
-		end
-	end,
-})
-
-local Button5 = setup:CreateButton({
-	Name = "Delete Killbricks in Tower",
-	Callback = function()
-		local parentthingy = workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]
-		grabcharacter()
-		if parentthingy:GetChildren()[8] == nil then
-			Rayfield:Notify({
-				Title = "Error",
-				Content = "You already did this!.",
-				Duration = 3,
-				Image = "triangle-alert",
-			})
-		else
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[8]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[1]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[4]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[2]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[7]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[3]:Destroy()
-			workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[6]:Destroy()
 		end
 	end,
 })
@@ -278,22 +258,26 @@ local Toggle1 = farm:CreateToggle({
 	Flag = "Obby1", 
 	Callback = function(Value)
 		activatedtoggle1 = not activatedtoggle1
-		while nil == nil do
-			if activatedtoggle1 == true then
-				local returncframe = Character.HumanoidRootPart.CFrame
-				Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
-				task.wait(0.2)
-				local args = {
-					[1] = CFrame.new(-398.04742431640625, 48.44138717651367, 19.950355529785156, -0.9937394857406616, -3.341312648785788e-08, -0.11172236502170563, -2.667190912575279e-08, 1, -6.183360312661534e-08, 0.11172236502170563, -5.8466646635224606e-08, -0.9937394857406616),
-					[2] = 3
-				}
+		local activate = checkinarena()
+		local hasglove = checkforglove("Obby")
+		if activate and hasglove then
+			while nil == nil do
+				if activatedtoggle1 == true then
+					local returncframe = Character.HumanoidRootPart.CFrame
+					Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
+					task.wait(0.2)
+					local args = {
+						[1] = CFrame.new(-398.04742431640625, 48.44138717651367, 19.950355529785156, -0.9937394857406616, -3.341312648785788e-08, -0.11172236502170563, -2.667190912575279e-08, 1, -6.183360312661534e-08, 0.11172236502170563, -5.8466646635224606e-08, -0.9937394857406616),
+						[2] = 3
+					}
 
-				game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
-				task.wait(0)
-				Character.HumanoidRootPart.CFrame = returncframe
-				task.wait(300)
-			else
-				break
+					game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+					task.wait(0)
+					Character.HumanoidRootPart.CFrame = returncframe
+					task.wait(300)
+				else
+					break
+				end
 			end
 		end
 	end,
@@ -304,23 +288,27 @@ local Toggle2 = farm:CreateToggle({
 	CurrentValue = false,
 	Flag = "Obby2", 
 	Callback = function(Value)
-		activatedtoggle1 = not activatedtoggle1
-		while nil == nil do
-			if activatedtoggle1 == true then
-				local returncframe = Character.HumanoidRootPart.CFrame
-				Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
-				task.wait(0.2)
-				local args = {
-					[1] = CFrame.new(-398.04742431640625, 48.44138717651367, 19.950355529785156, -0.9937394857406616, -3.341312648785788e-08, -0.11172236502170563, -2.667190912575279e-08, 1, -6.183360312661534e-08, 0.11172236502170563, -5.8466646635224606e-08, -0.9937394857406616),
-					[2] = 3
-				}
+		activatedtoggle2 = not activatedtoggle2
+		local activate = checkinarena()
+		local hasglove = checkforglove("Obby")
+		if activate and hasglove then
+			while nil == nil do
+				if activatedtoggle1 == true then
+					local returncframe = Character.HumanoidRootPart.CFrame
+					Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
+					task.wait(0.2)
+					local args = {
+						[1] = CFrame.new(-398.04742431640625, 48.44138717651367, 19.950355529785156, -0.9937394857406616, -3.341312648785788e-08, -0.11172236502170563, -2.667190912575279e-08, 1, -6.183360312661534e-08, 0.11172236502170563, -5.8466646635224606e-08, -0.9937394857406616),
+						[2] = 3
+					}
 
-				game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
-				task.wait(0)
-				Character.HumanoidRootPart.CFrame = returncframe
-				task.wait(60)
-			else
-				break
+					game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+					task.wait(0)
+					Character.HumanoidRootPart.CFrame = returncframe
+					task.wait(60)
+				else
+					break
+				end
 			end
 		end
 	end,
@@ -331,7 +319,7 @@ local Toggle3 = farm:CreateToggle({
 	CurrentValue = false,
 	Flag = "Obby3", 
 	Callback = function(Value)
-		activatedtoggle1 = not activatedtoggle1
+		activatedtoggle3 = not activatedtoggle3
 		while nil == nil do
 			if activatedtoggle1 == true then
 				local returncframe = Character.HumanoidRootPart.CFrame
@@ -358,30 +346,39 @@ local Toggle4 = farm:CreateToggle({
 	CurrentValue = false,
 	Flag = "Obby4", 
 	Callback = function(Value)
-		activatedtoggle1 = not activatedtoggle1
-		if workspace.Arena.CannonIsland["Cannon Island [OLD]"].Model.Towers["Meshes/castle tower 9"]:GetChildren()[8] == nil then
-			Character.HumanoidRootPart.CFrame = CFrame.new(304.013977, 33.6846275, 189.222794, 0.245372355, -5.88656512e-10, 0.969428897, 1.2375535e-09, 1, 2.93982449e-10, -0.969428897, 1.12758503e-09, 0.245372355)
-			task.wait(0.2)
-			while nil == nil do
-				if activatedtoggle1 == true then
-					local args = {
-						[1] = CFrame.new(296.8114929199219, 36.73462677001953, 186.90504455566406, 0.2528616487979889, 1.1677775191287765e-08, 0.9675024747848511, 3.659777192410729e-08, 1, -2.1635033320421826e-08, -0.9675024747848511, 4.087910454586563e-08, 0.2528616487979889),
-						[2] = 4
-					}
+		activatedtoggle4 = not activatedtoggle4
+		Rayfield:Notify({
+			Title = "Info",
+			Content = "Please enable noclip using infinite yeild to do this method.",
+			Duration = 5,
+			Image = "message-square",
+		})
+		Character.HumanoidRootPart.CFrame = CFrame.new(304.013977, 33.6846275, 189.222794, 0.245372355, -5.88656512e-10, 0.969428897, 1.2375535e-09, 1, 2.93982449e-10, -0.969428897, 1.12758503e-09, 0.245372355)
+		task.wait(0.2)
+		while nil == nil do
+			if activatedtoggle1 == true then
+				local args = {
+					[1] = CFrame.new(296.8114929199219, 36.73462677001953, 186.90504455566406, 0.2528616487979889, 1.1677775191287765e-08, 0.9675024747848511, 3.659777192410729e-08, 1, -2.1635033320421826e-08, -0.9675024747848511, 4.087910454586563e-08, 0.2528616487979889),
+					[2] = 4
+				}
 
-					game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
-					task.wait(3)
-				else
-					break
-				end
+				game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+				task.wait(3)
+			else
+				break
 			end
-		else
-			Rayfield:Notify({
-				Title = "Error",
-				Content = "Delete the killbarriers in 'Setup'.",
-				Duration = 3,
-				Image = "triangle-alert",
-			})
+		end
+	end,
+})
+
+local farmingsect2 = farm:CreateSection("Glovel")
+
+local Button5 = setup:CreateButton({
+	Name = "Get dig quest [instant]",
+	Callback = function()
+		for i = 1, 350, 1 do
+			game:GetService("ReplicatedStorage"):WaitForChild("GlovelFunc"):InvokeServer()
+			task.wait(0)
 		end
 	end,
 })
