@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.2]",
-	LoadingTitle = "first button that is instant!!!",
+	Name = "SB mastery gui [3.3]",
+	LoadingTitle = "Added [REDACTED]",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -84,7 +84,7 @@ function checkforglove(glove_name)
 	else
 		returnvalue = true
 	end
-	
+
 	return returnvalue
 end
 
@@ -140,14 +140,14 @@ local Button4 = setup:CreateButton({
 		local activate = checkinarena()
 		local hasglove = checkforglove("Obby")
 		if activate and hasglove then
-			
+
 			Rayfield:Notify({
 				Title = "Info",
 				Content = "This setup process has started.",
 				Duration = 5,
 				Image = "message-square",
 			})
-			
+
 			local returncframe = Character.HumanoidRootPart.CFrame
 			Character.HumanoidRootPart.CFrame = CFrame.new(13.8588505, -5.17285204, -3.96675038, -0.251725495, -1.07415012e-07, 0.96779865, 2.8105493e-08, 1, 1.18299269e-07, -0.96779865, 5.69794025e-08, -0.251725495)
 			task.wait(0.2)
@@ -198,9 +198,9 @@ local Button4 = setup:CreateButton({
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
 			task.wait(0)
 			Character.HumanoidRootPart.CFrame = returncframe
-			
+
 			task.wait(3)
-			
+
 			Character.HumanoidRootPart.CFrame = CFrame.new(-18.2541218, -5.17285204, -18.2538872, 0.88730222, -4.93852337e-09, 0.461188376, -7.00794134e-09, 1, 2.41911682e-08, -0.461188376, -2.46968579e-08, 0.88730222)
 			task.wait(0.2)
 			local args = {
@@ -211,9 +211,9 @@ local Button4 = setup:CreateButton({
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
 			task.wait(0)
 			Character.HumanoidRootPart.CFrame = returncframe
-			
+
 			task.wait(3)
-			
+
 			Character.HumanoidRootPart.CFrame = CFrame.new(-22.4971104, -5.17285204, -0.740897477, 0.99995923, 6.23151379e-08, 0.00903294887, -6.22680005e-08, 1, -5.49942225e-09, -0.00903294887, 4.93673413e-09, 0.99995923)
 			task.wait(0.2)
 			local args = {
@@ -224,9 +224,9 @@ local Button4 = setup:CreateButton({
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
 			task.wait(0)
 			Character.HumanoidRootPart.CFrame = returncframe
-			
+
 			task.wait(3)
-			
+
 			Character.HumanoidRootPart.CFrame = CFrame.new(-6.23772335, -5.17285204, 0.0253672525, 0.996048927, -2.18098606e-08, -0.0888063461, 1.5915278e-08, 1, -6.7083775e-08, 0.0888063461, 6.54053451e-08, 0.996048927)
 			task.wait(0.2)
 			local args = {
@@ -237,7 +237,7 @@ local Button4 = setup:CreateButton({
 			game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
 			task.wait(0)
 			Character.HumanoidRootPart.CFrame = returncframe
-			
+
 			Rayfield:Notify({
 				Title = "Info",
 				Content = "This setup process has ended.",
@@ -379,6 +379,25 @@ local Button5 = farm:CreateButton({
 		for i = 1, 350, 1 do
 			coroutine.wrap(function() game:GetService("ReplicatedStorage"):WaitForChild("GlovelFunc"):InvokeServer() end)()
 			task.wait(0)
+		end
+	end,
+})
+
+local farmingsect3 = farm:CreateSection("[REDACTED]")
+
+local Toggle5 = farm:CreateToggle({
+	Name = "Spam Well",
+	CurrentValue = false,
+	Flag = "redacted1", 
+	Callback = function(Value)
+		activatedtoggle5 = not activatedtoggle5
+		while nil == nil do
+			if activatedtoggle1 == true then
+				game:GetService("ReplicatedStorage"):WaitForChild("Well"):FireServer()
+				task.wait(4.05)
+			else
+				break
+			end
 		end
 	end,
 })
