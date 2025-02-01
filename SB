@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.3]",
-	LoadingTitle = "Added [REDACTED]",
+	Name = "SB mastery gui [3.4]",
+	LoadingTitle = "Bug Fixes",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -293,7 +293,7 @@ local Toggle2 = farm:CreateToggle({
 		local hasglove = checkforglove("Obby")
 		if activate and hasglove then
 			while nil == nil do
-				if activatedtoggle1 == true then
+				if activatedtoggle2 == true then
 					local returncframe = Character.HumanoidRootPart.CFrame
 					Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
 					task.wait(0.2)
@@ -321,7 +321,7 @@ local Toggle3 = farm:CreateToggle({
 	Callback = function(Value)
 		activatedtoggle3 = not activatedtoggle3
 		while nil == nil do
-			if activatedtoggle1 == true then
+			if activatedtoggle3 == true then
 				local returncframe = Character.HumanoidRootPart.CFrame
 				Character.HumanoidRootPart.CFrame = CFrame.new(-398.773621, 51.1413879, 13.4910488, -0.993739486, -4.21574491e-08, -0.111722365, -3.36584165e-08, 1, -7.79588945e-08, 0.111722365, -7.37104315e-08, -0.993739486)
 				task.wait(0.2)
@@ -356,7 +356,7 @@ local Toggle4 = farm:CreateToggle({
 		Character.HumanoidRootPart.CFrame = CFrame.new(304.013977, 33.6846275, 189.222794, 0.245372355, -5.88656512e-10, 0.969428897, 1.2375535e-09, 1, 2.93982449e-10, -0.969428897, 1.12758503e-09, 0.245372355)
 		task.wait(0.2)
 		while nil == nil do
-			if activatedtoggle1 == true then
+			if activatedtoggle4 == true then
 				local args = {
 					[1] = CFrame.new(296.8114929199219, 36.73462677001953, 186.90504455566406, 0.2528616487979889, 1.1677775191287765e-08, 0.9675024747848511, 3.659777192410729e-08, 1, -2.1635033320421826e-08, -0.9675024747848511, 4.087910454586563e-08, 0.2528616487979889),
 					[2] = 4
@@ -392,7 +392,7 @@ local Toggle5 = farm:CreateToggle({
 	Callback = function(Value)
 		activatedtoggle5 = not activatedtoggle5
 		while nil == nil do
-			if activatedtoggle1 == true then
+			if activatedtoggle5 == true then
 				game:GetService("ReplicatedStorage"):WaitForChild("Well"):FireServer()
 				task.wait(4.05)
 			else
