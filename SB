@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.5]",
-	LoadingTitle = "New toggle",
+	Name = "SB mastery gui [3.6]",
+	LoadingTitle = "New all glove toggle + bus",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -39,13 +39,14 @@ if game.PlaceId ~= 6403373529 then
 end
 
 -- variables
-
+activatedtoggle0 = false
 activatedtoggle1 = false
 activatedtoggle2 = false
 activatedtoggle3 = false
 activatedtoggle4 = false
 activatedtoggle5 = false
-activatedtoggle0 = false
+activatedtoggle6 = false
+
 player = game.Players.LocalPlayer
 Character = player.Character
 local setup = Window:CreateTab("Setup", "blocks")
@@ -272,7 +273,7 @@ local Toggle0 = farm:CreateToggle({
 							Image = "triangle-alert",
 						})
 					else
-						Character.HumanoidRootPart.CFrame = CFrame.new(0, 305, 100000)
+						Character.HumanoidRootPart.CFrame = CFrame.new(0, 310, 100000)
 					end
 					task.wait(0)
 				else
@@ -428,6 +429,25 @@ local Toggle5 = farm:CreateToggle({
 			if activatedtoggle5 == true then
 				game:GetService("ReplicatedStorage"):WaitForChild("Well"):FireServer()
 				task.wait(4.05)
+			else
+				break
+			end
+		end
+	end,
+})
+
+local farmingsect4 = farm:CreateSection("bus")
+
+local Toggle56= farm:CreateToggle({
+	Name = "Spam bus",
+	CurrentValue = false,
+	Flag = "bus1", 
+	Callback = function(Value)
+		activatedtoggle6 = not activatedtoggle6
+		while nil == nil do
+			if activatedtoggle5 == true then
+				game:GetService("ReplicatedStorage"):WaitForChild("busmoment"):FireServer()
+				task.wait(5.05)
 			else
 				break
 			end
