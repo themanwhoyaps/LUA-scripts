@@ -274,6 +274,7 @@ local Toggle0 = farm:CreateToggle({
 						})
 					else
 						Character.HumanoidRootPart.CFrame = CFrame.new(0, 310, 100000)
+						Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 					end
 					task.wait(0)
 				else
