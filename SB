@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.4]",
-	LoadingTitle = "Bug Fixes",
+	Name = "SB mastery gui [3.5]",
+	LoadingTitle = "New toggle",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -45,6 +45,7 @@ activatedtoggle2 = false
 activatedtoggle3 = false
 activatedtoggle4 = false
 activatedtoggle5 = false
+activatedtoggle0 = false
 player = game.Players.LocalPlayer
 Character = player.Character
 local setup = Window:CreateTab("Setup", "blocks")
@@ -249,6 +250,38 @@ local Button4 = setup:CreateButton({
 })
 
 -- gui elements // farming
+
+local farmingsec0 = farm:CreateSection("All Gloves")
+
+local Toggle0 = farm:CreateToggle({
+	Name = "Loop teleport safezone",
+	CurrentValue = false,
+	Flag = "All1", 
+	Callback = function(Value)
+		activatedtoggle0 = not activatedtoggle0
+		local activate = checkinarena()
+		if activate then
+			while nil == nil do
+				if activatedtoggle0 == true then
+					grabcharacter()
+					if workspace:FindFirstChild("mastery_floor") == nil then
+						Rayfield:Notify({
+							Title = "Error",
+							Content = "Generate a safezone first.",
+							Duration = 5,
+							Image = "triangle-alert",
+						})
+					else
+						Character.HumanoidRootPart.CFrame = CFrame.new(0, 305, 100000)
+					end
+					task.wait(0)
+				else
+					break
+				end
+			end
+		end
+	end,
+})
 
 local farmingsect1 = farm:CreateSection("Obby")
 
