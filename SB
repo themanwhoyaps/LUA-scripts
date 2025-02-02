@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.7]",
+	Name = "SB mastery gui [3.7e+]",
 	LoadingTitle = "New all glove toggle + bus",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
