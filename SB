@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.7e+]",
+	Name = "SB mastery gui [3.8]",
 	LoadingTitle = "New all glove toggle + bus",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -444,12 +444,15 @@ local Toggle56= farm:CreateToggle({
 	Flag = "bus1", 
 	Callback = function(Value)
 		activatedtoggle6 = not activatedtoggle6
-		while nil == nil do
-			if activatedtoggle6 == true then
-				game:GetService("ReplicatedStorage"):WaitForChild("busmoment"):FireServer()
-				task.wait(5.05)
-			else
-				break
+		local hasglove = checkforglove("bus")
+		if hasglove then
+			while nil == nil do
+				if activatedtoggle6 == true then
+					game:GetService("ReplicatedStorage"):WaitForChild("busmoment"):FireServer()
+					task.wait(5.1)
+				else
+					break
+				end
 			end
 		end
 	end,
