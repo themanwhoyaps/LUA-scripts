@@ -52,7 +52,7 @@ Character = player.Character
 altfarmtargetplayer = nil
 local setup = Window:CreateTab("Setup", "blocks")
 local farm = Window:CreateTab("Farming", "workflow")
-local altfarm = Window:CreateTab("Alt Farming", "scan-heart")
+local altfarm = Window:CreateTab("Alt Farming", "workflow")
 local misc = Window:CreateTab("Other Essentials", "settings-2")
 
 -- functions
