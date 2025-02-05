@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [3.8]",
-	LoadingTitle = "New all glove toggle + bus",
+	Name = "SB mastery gui [3.9]",
+	LoadingTitle = "KillStreak alt farming",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -49,8 +49,10 @@ activatedtoggle6 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
+altfarmtargetplayer = nil
 local setup = Window:CreateTab("Setup", "blocks")
 local farm = Window:CreateTab("Farming", "workflow")
+local altfarm = Window:CreateTab("Alt Farming", "scan-heart")
 local misc = Window:CreateTab("Other Essentials", "settings-2")
 
 -- functions
@@ -439,7 +441,7 @@ local Toggle5 = farm:CreateToggle({
 
 local farmingsect4 = farm:CreateSection("bus")
 
-local Toggle56= farm:CreateToggle({
+local Toggle6 = farm:CreateToggle({
 	Name = "Spam bus",
 	CurrentValue = false,
 	Flag = "bus1", 
@@ -454,6 +456,68 @@ local Toggle56= farm:CreateToggle({
 				else
 					break
 				end
+			end
+		end
+	end,
+})
+
+-- gui elements // alt farming
+
+local Paragraph = altfarm:CreateParagraph({Title = "Info:", Content = "This tab is intended to be used for alts, and other grinding usages. It is mean to be combined with the other tabs."})
+
+local TargetPlayerInput = altfarm:CreateInput({
+	Name = "Target Player:",
+	CurrentValue = "",
+	PlaceholderText = "[enter full username here]",
+	RemoveTextAfterFocusLost = false,
+	Flag = "textbox1",
+	Callback = function(Text)
+		altfarmtargetplayer = Text
+	end,
+})
+
+local Toggle7 = farm:CreateToggle({
+	Name = "Loop give kills",
+	CurrentValue = false,
+	Flag = "killstreak1", 
+	Callback = function(Value)
+		activatedtoggle6 = not activatedtoggle6
+		local lp = game.Players.LocalPlayer
+		local char = lp.Character
+		local targettp = workspace:FindFirstChild(altfarmtargetplayer)
+
+		local function reset()
+			game:GetService("Players").LocalPlayer:WaitForChild("Reset"):FireServer()
+		end
+
+		local function teleportin()
+			local teleportportal = workspace.Lobby.Teleport1
+			firetouchinterest(char.HumanoidRootPart, teleportportal, 0)
+			-- red lines are wrong, this works regardless.
+		end
+
+		local function teleportplayer()
+			local offsetCFrame = CFrame.new(0, 0, -3)
+			char.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+			char.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		end
+
+		local function redefinecharacter()
+			lp = game.Players.LocalPlayer
+			char = lp.Character
+		end
+		while nil == nil do
+			if activatedtoggle6 == true then
+				teleportin()
+				for i = 1, 25, 1 do
+					teleportplayer()
+					task.wait(0)
+				end
+				reset()
+				task.wait(3.8)
+				redefinecharacter()
+			else
+				break
 			end
 		end
 	end,
