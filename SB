@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.0]",
-	LoadingTitle = "KillStreak alt farming",
+	Name = "SB mastery gui [4.1]",
+	LoadingTitle = "NEW ALT FARMING TAB!!!",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -46,6 +46,8 @@ activatedtoggle3 = false
 activatedtoggle4 = false
 activatedtoggle5 = false
 activatedtoggle6 = false
+activatedtoggle7 = false
+activatedtoggle8 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -476,12 +478,12 @@ local TargetPlayerInput = altfarm:CreateInput({
 	end,
 })
 
-local Toggle7 = farm:CreateToggle({
+local Toggle7 = altfarm:CreateToggle({
 	Name = "Loop give kills",
 	CurrentValue = false,
 	Flag = "killstreak1", 
 	Callback = function(Value)
-		activatedtoggle6 = not activatedtoggle6
+		activatedtoggle7 = not activatedtoggle7
 		local lp = game.Players.LocalPlayer
 		local char = lp.Character
 		local targettp = workspace:FindFirstChild(altfarmtargetplayer)
@@ -507,12 +509,57 @@ local Toggle7 = farm:CreateToggle({
 			char = lp.Character
 		end
 		while nil == nil do
-			if activatedtoggle6 == true then
+			if activatedtoggle7 == true then
 				teleportin()
 				for i = 1, 25, 1 do
 					teleportplayer()
 					task.wait(0)
 				end
+				reset()
+				task.wait(3.8)
+				redefinecharacter()
+			else
+				break
+			end
+		end
+	end,
+})
+
+local Toggle8 = altfarm:CreateToggle({
+	Name = "Loop [REDACTED]",
+	CurrentValue = false,
+	Flag = "redacted2", 
+	Callback = function(Value)
+		activatedtoggle8 = not activatedtoggle8
+		local lp = game.Players.LocalPlayer
+		local char = lp.Character
+		local targettp = workspace:FindFirstChild(altfarmtargetplayer)
+
+		local function reset()
+			game:GetService("Players").LocalPlayer:WaitForChild("Reset"):FireServer()
+		end
+
+		local function teleportin()
+			local teleportportal = workspace.Lobby.Teleport1
+			firetouchinterest(char.HumanoidRootPart, teleportportal, 0)
+			-- red lines are wrong, this works regardless.
+		end
+
+		local function teleportplayer()
+			local offsetCFrame = CFrame.new(0, 0, -3)
+			char.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+			char.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		end
+
+		local function redefinecharacter()
+			lp = game.Players.LocalPlayer
+			char = lp.Character
+		end
+		while nil == nil do
+			if activatedtoggle8 == true then
+				teleportin()
+				teleportplayer()
+				task.wait(4)
 				reset()
 				task.wait(3.8)
 				redefinecharacter()
