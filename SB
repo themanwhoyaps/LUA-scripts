@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.2]",
+	Name = "SB mastery gui [4.3]",
 	LoadingTitle = "NEW ALT FARMING TAB!!!",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -562,9 +562,7 @@ local Toggle8 = altfarm:CreateToggle({
 					teleportplayer()
 					task.wait(0)
 				end
-				task.wait(4)
-				reset()
-				task.wait(3.8)
+				task.wait(11)
 				redefinecharacter()
 			else
 				break
