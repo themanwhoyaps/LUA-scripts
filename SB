@@ -4,8 +4,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.3]",
-	LoadingTitle = "NEW ALT FARMING TAB!!!",
+	Name = "SB mastery gui [4.4]",
+	LoadingTitle = "Fixed [REDACTED] alt farm",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -465,7 +465,7 @@ local Toggle6 = farm:CreateToggle({
 
 -- gui elements // alt farming
 
-local Paragraph = altfarm:CreateParagraph({Title = "Info:", Content = "This tab is intended to be used for alts, and other grinding usages. It is mean to be combined with the other tabs."})
+local Paragraph1 = altfarm:CreateParagraph({Title = "Info:", Content = "This tab is intended to be used for alts, and other grinding usages. It is mean to be combined with the other tabs."})
 
 local TargetPlayerInput = altfarm:CreateInput({
 	Name = "Target Player:",
@@ -477,6 +477,8 @@ local TargetPlayerInput = altfarm:CreateInput({
 		altfarmtargetplayer = Text
 	end,
 })
+
+local Paragraph2 = altfarm:CreateParagraph({Title = "Toggle Info", Content = "This toggle teleports to the selected player and resets half a second later, the selected player is mean to be slapping constantly, to get the kills."})
 
 local Toggle7 = altfarm:CreateToggle({
 	Name = "Loop give kills",
@@ -525,6 +527,8 @@ local Toggle7 = altfarm:CreateToggle({
 	end,
 })
 
+local Paragraph = altfarm:CreateParagraph({Title = "Toggle Info", Content = "Teleports to the selected player and resets a second later, it is mean to teleport underneath the selected player's [REDACTED] well."})
+
 local Toggle8 = altfarm:CreateToggle({
 	Name = "Loop [REDACTED]",
 	CurrentValue = false,
@@ -562,7 +566,9 @@ local Toggle8 = altfarm:CreateToggle({
 					teleportplayer()
 					task.wait(0)
 				end
-				task.wait(11)
+				task.wait(1)
+				reset()
+				task.wait(3.8)
 				redefinecharacter()
 			else
 				break
