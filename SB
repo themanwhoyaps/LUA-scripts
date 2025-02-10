@@ -4,7 +4,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.5]",
+	Name = "SB mastery gui [4.6]",
 	LoadingTitle = "Fixed [REDACTED] alt farm",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -433,7 +433,7 @@ local Toggle5 = farm:CreateToggle({
 		while nil == nil do
 			if activatedtoggle5 == true then
 				game:GetService("ReplicatedStorage"):WaitForChild("Well"):FireServer()
-				task.wait(4.1)
+				task.wait(5.1)
 			else
 				break
 			end
@@ -568,7 +568,7 @@ local Toggle8 = altfarm:CreateToggle({
 				end
 				task.wait(1)
 				reset()
-				task.wait(3.8)
+				task.wait(4.5)
 				redefinecharacter()
 			else
 				break
