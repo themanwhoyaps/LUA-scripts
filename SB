@@ -478,7 +478,7 @@ local Toggle9 = farm:CreateToggle({
 					}
 
 					game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
-					task.wait(4)
+					task.wait(3.5)
 				else
 					break
 				end
