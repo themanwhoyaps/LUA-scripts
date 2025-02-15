@@ -1,11 +1,8 @@
--- max time: 3
--- 13.8588505, -5.17285204, -3.96675038, -0.251725495, -1.07415012e-07, 0.96779865, 2.8105493e-08, 1, 1.18299269e-07, -0.96779865, 5.69794025e-08, -0.251725495
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.6]",
-	LoadingTitle = "Fixed [REDACTED] alt farm",
+	Name = "SB mastery gui [4.7]",
+	LoadingTitle = "RUN",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -48,6 +45,7 @@ activatedtoggle5 = false
 activatedtoggle6 = false
 activatedtoggle7 = false
 activatedtoggle8 = false
+activatedtoggle9 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -460,6 +458,43 @@ local Toggle6 = farm:CreateToggle({
 				end
 			end
 		end
+	end,
+})
+
+local farmingsect4 = farm:CreateSection("Run")
+
+local Toggle9 = farm:CreateToggle({
+	Name = "Spam Run [Sussy]",
+	CurrentValue = false,
+	Flag = "run1", 
+	Callback = function(Value)
+		activatedtoggle9 = not activatedtoggle9
+		local hasglove = checkforglove("Run")
+		if hasglove then
+			while nil == nil do
+				if activatedtoggle9 == true then
+					local args = {
+						[1] = Character.HumanoidRootPart.Position - Vector3.new(0, 2, 0)
+					}
+
+					game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+					task.wait(4)
+				else
+					break
+				end
+			end
+		end
+	end,
+})
+
+local Button6 = setup:CreateButton({
+	Name = "Hidden Run [Sussy]",
+	Callback = function()
+		local args = {
+			[1] = Character.HumanoidRootPart.Position - Vector3.new(0, 9.9, 0)
+		}
+
+		game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
 	end,
 })
 
