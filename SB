@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.7]",
+	Name = "SB mastery gui [4.8]",
 	LoadingTitle = "RUN",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -461,7 +461,7 @@ local Toggle6 = farm:CreateToggle({
 	end,
 })
 
-local farmingsect4 = farm:CreateSection("Run")
+local farmingsect5 = farm:CreateSection("Run")
 
 local Toggle9 = farm:CreateToggle({
 	Name = "Spam Run [Sussy]",
@@ -487,7 +487,7 @@ local Toggle9 = farm:CreateToggle({
 	end,
 })
 
-local Button6 = setup:CreateButton({
+local Button6 = farm:CreateButton({
 	Name = "Hidden Run [Sussy]",
 	Callback = function()
 		local args = {
