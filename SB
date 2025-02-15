@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.1]",
+	Name = "SB mastery gui [5.2]",
 	LoadingTitle = "RUN + basic Brick",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -512,7 +512,7 @@ local Togglebrick1 = farm:CreateToggle({
 			while nil == nil do
 				if activatedtoggle10 == true then
 					game:GetService("ReplicatedStorage"):WaitForChild("lbrick"):FireServer()
-					task.wait(1.1)
+					task.wait(2)
 				else
 					break
 				end
