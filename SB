@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.3]",
-	LoadingTitle = "Added more stuff to the safezone :D",
+	Name = "SB mastery gui [5.4]",
+	LoadingTitle = "Invis button",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -96,6 +96,35 @@ end
 -- gui elements // setup
 
 local setupsect = setup:CreateSection("All Gloves")
+
+local Buttoninvis = setup:CreateButton({
+	Name = "Turn Invisible (LOBBY ONLY)",
+	Callback = function()
+		grabcharacter()
+		if game:GetService("Players").LocalPlayer.leaderstats.Slaps.Value < 666 then
+			Rayfield:Notify({
+				Title = "Error",
+				Content = "You need atleast 666 slaps.",
+				Duration = 5,
+				Image = "triangle-alert",
+			})
+		else
+			if Character.isInArena.Value == true then
+				Rayfield:Notify({
+					Title = "Error",
+					Content = "This can only be done in the lobby!",
+					Duration = 5,
+					Image = "triangle-alert",
+				})
+			else
+				local original_glove = game:GetService("Players").LocalPlayer.leaderstats.Glove.Value
+				fireclickdetector(workspace.Lobby.Ghost.ClickDetector)
+				game:GetService("ReplicatedStorage"):WaitForChild("Ghostinvisibilityactivated"):FireServer()
+				fireclickdetector(workspace.Lobby:FindFirstChild(original_glove).ClickDetector)
+			end
+		end
+	end,
+})
 
 local Button2 = setup:CreateButton({
 	Name = "Generate Safezone",
