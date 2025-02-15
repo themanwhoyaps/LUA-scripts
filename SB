@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.0]",
-	LoadingTitle = "RUN",
+	Name = "SB mastery gui [5.1]",
+	LoadingTitle = "RUN + basic Brick",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -46,6 +46,7 @@ activatedtoggle6 = false
 activatedtoggle7 = false
 activatedtoggle8 = false
 activatedtoggle9 = false
+activatedtoggle10 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -495,6 +496,28 @@ local Button6 = farm:CreateButton({
 		}
 
 		game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
+	end,
+})
+
+local farmingsectbrick = farm:CreateSection("Brick")
+
+local Togglebrick1 = farm:CreateToggle({
+	Name = "Spam brick [This wont add to your brick counter]",
+	CurrentValue = false,
+	Flag = "brick1", 
+	Callback = function(Value)
+		activatedtoggle10 = not activatedtoggle10
+		local hasglove = checkforglove("Brick")
+		if hasglove then
+			while nil == nil do
+				if activatedtoggle10 == true then
+					game:GetService("ReplicatedStorage"):WaitForChild("lbrick"):FireServer()
+					task.wait(1.1)
+				else
+					break
+				end
+			end
+		end
 	end,
 })
 
