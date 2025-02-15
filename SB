@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.8]",
+	Name = "SB mastery gui [4.9]",
 	LoadingTitle = "RUN",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -474,11 +474,11 @@ local Toggle9 = farm:CreateToggle({
 			while nil == nil do
 				if activatedtoggle9 == true then
 					local args = {
-						[1] = Character.HumanoidRootPart.Position - Vector3.new(0, 2, 0)
+						[1] = Character.HumanoidRootPart.Position - Vector3.new(0, 3, 0)
 					}
 
 					game:GetService("ReplicatedStorage"):WaitForChild("GeneralAbility"):FireServer(unpack(args))
-					task.wait(3.5)
+					task.wait(3)
 				else
 					break
 				end
