@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [4.9]",
+	Name = "SB mastery gui [5.0]",
 	LoadingTitle = "RUN",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -52,7 +52,7 @@ Character = player.Character
 altfarmtargetplayer = nil
 local setup = Window:CreateTab("Setup", "blocks")
 local farm = Window:CreateTab("Farming", "workflow")
-local altfarm = Window:CreateTab("Alt Farming", "workflow")
+local altfarm = Window:CreateTab("Alt Farming", "refresh-ccw-dot")
 local misc = Window:CreateTab("Other Essentials", "settings-2")
 
 -- functions
