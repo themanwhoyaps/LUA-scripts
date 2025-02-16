@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.4]",
-	LoadingTitle = "Invis button",
+	Name = "SB mastery gui [5.5]",
+	LoadingTitle = "Added wormhole fr fr",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -47,6 +47,7 @@ activatedtoggle7 = false
 activatedtoggle8 = false
 activatedtoggle9 = false
 activatedtoggle10 = false
+activatedtoggle11 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -76,9 +77,11 @@ function checkinarena()
 end
 
 function checkforglove(glove_name)
-	local functincharacter = workspace:FindFirstChild(Character.Name)
+	local charactervalueglove = game:GetService("Players").LocalPlayer.leaderstats.Glove.Value
 	local returnvalue = nil
-	if functincharacter:FindFirstChild(glove_name) == nil then
+	if charactervalueglove == glove_name then
+		returnvalue = true
+	else
 		Rayfield:Notify({
 			Title = "Error",
 			Content = "Equip ", glove_name, ".",
@@ -86,8 +89,6 @@ function checkforglove(glove_name)
 			Image = "triangle-alert",
 		})
 		returnvalue = false
-	else
-		returnvalue = true
 	end
 
 	return returnvalue
@@ -565,6 +566,37 @@ local Togglebrick1 = farm:CreateToggle({
 		end
 	end,
 })
+
+local farmingsectwormhole = farm:CreateSection("Wormhole")
+
+local ToggleWormhole = farm:CreateToggle({
+	Name = "Spam teleport [it might not look like it]",
+	CurrentValue = false,
+	Flag = "wormhole1", 
+	Callback = function(Value)
+		activatedtoggle11 = not activatedtoggle11
+		local hasglove = checkforglove("Wormhole")
+
+		local function tpfrfr()
+			local args = {
+				[1] = CFrame.new(0, 100000, 0)
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("WormholeTP"):FireServer(unpack(args))
+		end
+
+		if hasglove then
+			while nil == nil do
+				if activatedtoggle11 == true then
+					coroutine.wrap(function() tpfrfr() end)()
+					task.wait(0.1)
+				else
+					break
+				end
+			end
+		end
+	end,
+})
+
 
 -- gui elements // alt farming
 
