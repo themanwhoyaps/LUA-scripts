@@ -1,0 +1,84 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "Mouse abuse gui",
+	LoadingTitle = "Works in both worlds btw",
+	LoadingSubtitle = "By @ThemanWhoYaps",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil, 
+		FileName = "Example Hub"
+	},
+	Discord = {
+		Enabled = false,
+		Invite = "noinvitelink", 
+		RememberJoins = true 
+	},
+	KeySystem = false, 
+	KeySettings = {
+		Title = "Key | Youtube Hub",
+		Subtitle = "Key System",
+		Note = "Key In Discord Server",
+		FileName = "YoutubeHubKey1",
+		SaveKey = false,
+		GrabKeyFromSite = true, 
+		Key = {"https://pastebin.com/raw/AtgzSPWK"} 
+	}
+})
+
+-- variables
+player = game.Players.LocalPlayer
+Character = player.Character
+
+-- functions
+
+function grabcharacter()
+	player = game.Players.LocalPlayer
+	Character = player.Character
+end
+
+-- ui
+
+if game.PlaceId == 6403373529 then
+	local setup = Window:CreateTab("Setup", "blocks")
+
+	local MouseTP = setup:CreateButton({
+		Name = "Teleport to mouse world [Need 11500 slaps, LOBBY ONLY]",
+		Callback = function()
+			grabcharacter()
+			if game:GetService("Players").LocalPlayer.leaderstats.Slaps.Value < 11500 then
+				Rayfield:Notify({
+					Title = "Error",
+					Content = "You need atleast  slaps.",
+					Duration = 5,
+					Image = "triangle-alert",
+				})
+			else
+				if Character.isInArena.Value == true then
+					Rayfield:Notify({
+						Title = "Error",
+						Content = "This can only be done in the lobby!",
+						Duration = 5,
+						Image = "triangle-alert",
+					})
+				else
+					fireclickdetector(workspace.Lobby["el gato"].ClickDetector)
+					task.wait(0)
+					fireclickdetector(workspace.Cheese.ClickDetector)
+				end
+			end
+		end,
+	})
+end
+
+if game.PlaceId == 97220865182663 then
+	local setup = Window:CreateTab("Cheats", "blocks")
+	
+	local MouseTP = setup:CreateButton({
+		Name = "win",
+		Callback = function()
+			game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UnlockGloveWithOrbs"):FireServer()
+		end,
+	})
+
+end
