@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.5]",
-	LoadingTitle = "Added wormhole fr fr",
+	Name = "SB mastery gui [5.6]",
+	LoadingTitle = "Made some space for bomb mastery",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -48,6 +48,7 @@ activatedtoggle8 = false
 activatedtoggle9 = false
 activatedtoggle10 = false
 activatedtoggle11 = false
+activatedtoggle12 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -135,7 +136,7 @@ local Button2 = setup:CreateButton({
 			floor.Anchored = true
 			floor.Transparency = 0
 			floor.CFrame = CFrame.new(0, 300, 100000)
-			floor.Size = Vector3.new(300, 20, 300)
+			floor.Size = Vector3.new(500, 20, 500)
 			floor.BrickColor = BrickColor.new("Shamrock")
 			floor.Name = "mastery_floor"
 			local truss = Instance.new("TrussPart", workspace)
