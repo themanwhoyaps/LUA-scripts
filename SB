@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.8]",
+	Name = "SB mastery gui [5.9]",
 	LoadingTitle = "Bomb added lol",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -297,6 +297,25 @@ local Button4 = setup:CreateButton({
 				Duration = 5,
 				Image = "message-square",
 			})
+		end
+	end,
+})
+
+local setupsect3 = setup:CreateSection("Bomb")
+
+local ButtonBomb3 = setup:CreateButton({
+	Name = "Teleport to safezone snipe alignment",
+	Callback = function()
+		grabcharacter()
+		if workspace:FindFirstChild("mastery_floor") == nil then
+			Rayfield:Notify({
+				Title = "Error",
+				Content = "Generate a safezone first.",
+				Duration = 5,
+				Image = "triangle-alert",
+			})
+		else
+			Character.HumanoidRootPart.CFrame = CFrame.new(-0.873229206, 312.999969, 100220.266, 0.999863684, -3.2301454e-08, 0.0165109374, 3.35276411e-08, 1, -7.39883532e-08, -0.0165109374, 7.45318403e-08, 0.999863684)
 		end
 	end,
 })
@@ -654,24 +673,7 @@ local ToggleBomb2 = farm:CreateToggle({
 	end,
 })
 
-local ButtonBomb3 = setup:CreateButton({
-	Name = "Teleport to safezone snipe alignment",
-	Callback = function()
-		grabcharacter()
-		if workspace:FindFirstChild("mastery_floor") == nil then
-			Rayfield:Notify({
-				Title = "Error",
-				Content = "Generate a safezone first.",
-				Duration = 5,
-				Image = "triangle-alert",
-			})
-		else
-			Character.HumanoidRootPart.CFrame = CFrame.new(-0.873229206, 312.999969, 100220.266, 0.999863684, -3.2301454e-08, 0.0165109374, 3.35276411e-08, 1, -7.39883532e-08, -0.0165109374, 7.45318403e-08, 0.999863684)
-		end
-	end,
-})
-
--- gui elements // alt farming
+-- gui elements // alt farming ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 local Paragraph1 = altfarm:CreateParagraph({Title = "Info:", Content = "This tab is intended to be used for alts, and other grinding usages. It is mean to be combined with the other tabs."})
 
