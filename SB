@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.6]",
-	LoadingTitle = "Bomb mastery long range spam",
+	Name = "SB mastery gui [5.7]",
+	LoadingTitle = "Bomb added lol",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -49,6 +49,7 @@ activatedtoggle9 = false
 activatedtoggle10 = false
 activatedtoggle11 = false
 activatedtoggle12 = false
+activatedtoggle13 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -614,6 +615,38 @@ local ToggleBomb1 = farm:CreateToggle({
 
 				game:GetService("ReplicatedStorage"):WaitForChild("BombThrow"):FireServer(unpack(args))
 				task.wait(10)
+				local args = {
+					[1] = "Ebutton"
+				}
+
+				game:GetService("ReplicatedStorage"):WaitForChild("BombThrow"):FireServer(unpack(args))
+				task.wait(0.1)
+			else
+				break
+			end
+		end
+	end,
+})
+
+local ToggleBomb2 = farm:CreateToggle({
+	Name = "Spam abil (closer range)",
+	CurrentValue = false,
+	Flag = "bomb2", 
+	Callback = function(Value)
+		activatedtoggle13 = not activatedtoggle13
+		local function useabil()
+			local args = {
+				[1] = "Ebutton"
+			}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("BombThrow"):FireServer(unpack(args))
+		end
+		while nil == nil do
+			if activatedtoggle13 == true then
+				useabil()
+				task.wait(3)
+				useabil()
+				task.wait(3.2)
 			else
 				break
 			end
