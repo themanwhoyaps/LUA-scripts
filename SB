@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [5.7]",
+	Name = "SB mastery gui [5.8]",
 	LoadingTitle = "Bomb added lol",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -650,6 +650,23 @@ local ToggleBomb2 = farm:CreateToggle({
 			else
 				break
 			end
+		end
+	end,
+})
+
+local ButtonBomb3 = setup:CreateButton({
+	Name = "Teleport to safezone snipe alignment",
+	Callback = function()
+		grabcharacter()
+		if workspace:FindFirstChild("mastery_floor") == nil then
+			Rayfield:Notify({
+				Title = "Error",
+				Content = "Generate a safezone first.",
+				Duration = 5,
+				Image = "triangle-alert",
+			})
+		else
+			Character.HumanoidRootPart.CFrame = CFrame.new(-0.873229206, 312.999969, 100220.266, 0.999863684, -3.2301454e-08, 0.0165109374, 3.35276411e-08, 1, -7.39883532e-08, -0.0165109374, 7.45318403e-08, 0.999863684)
 		end
 	end,
 })
