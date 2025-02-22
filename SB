@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
 	Name = "SB mastery gui [5.6]",
-	LoadingTitle = "Made some space for bomb mastery",
+	LoadingTitle = "Bomb mastery long range spam",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -598,6 +598,28 @@ local ToggleWormhole = farm:CreateToggle({
 	end,
 })
 
+local farmingsectbomb = farm:CreateSection("Bomb")
+
+local ToggleBomb1 = farm:CreateToggle({
+	Name = "Spam abil (for snipe)",
+	CurrentValue = false,
+	Flag = "bomb1", 
+	Callback = function(Value)
+		activatedtoggle12 = not activatedtoggle12
+		while nil == nil do
+			if activatedtoggle12 == true then
+				local args = {
+					[1] = "Ebutton"
+				}
+
+				game:GetService("ReplicatedStorage"):WaitForChild("BombThrow"):FireServer(unpack(args))
+				task.wait(10)
+			else
+				break
+			end
+		end
+	end,
+})
 
 -- gui elements // alt farming
 
