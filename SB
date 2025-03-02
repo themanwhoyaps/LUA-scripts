@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [6.2]",
+	Name = "SB mastery gui [6.3]",
 	LoadingTitle = "is that rob!??!",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -875,7 +875,7 @@ local Togglebombalt1 = altfarm:CreateToggle({
 	end,
 })
 
-local farmingsectrob = altfarm:CreateSection("rob")
+local Paragraph = altfarm:CreateParagraph({Title = "Toggle Info (rob)", Content = "Teleports next to the selected player and waits untill it gets absorbed by rob, then comes back."})
 
 local Toggle8 = altfarm:CreateToggle({
 	Name = "Loop rob",
@@ -913,11 +913,7 @@ local Toggle8 = altfarm:CreateToggle({
 				repeat task.wait(0)
 					teleportplayer()
 				until char.Ragdolled.Value
-
-				lp.CharacterAdded:Wait()
-				repeat task.wait(0)
-					redefinecharacter()
-				until char:FindFirstChild("HumanoidRootPart") ~= nil
+				lp.CharacterAppearanceLoaded:Wait()
 			else
 				break
 			end
