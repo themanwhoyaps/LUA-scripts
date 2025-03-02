@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [6.0]",
-	LoadingTitle = "Bomb added lol + Alt farm bomb",
+	Name = "SB mastery gui [6.1]",
+	LoadingTitle = "is that rob!??!",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -671,6 +671,16 @@ local ToggleBomb2 = farm:CreateToggle({
 				break
 			end
 		end
+	end,
+})
+
+local farmingsectrob = farm:CreateSection("rob")
+
+local Buttonall4 = farm:CreateButton({
+	Name = "Fling yourself (for 2nd quest)",
+	Callback = function()
+		grabcharacter()
+		Character:FindFirstChild("HumanoidRootPart").Velocity = Vector3.new(0, 0, 999999999999)
 	end,
 })
 
