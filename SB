@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [6.1]",
+	Name = "SB mastery gui [6.2]",
 	LoadingTitle = "is that rob!??!",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -51,6 +51,7 @@ activatedtoggle11 = false
 activatedtoggle12 = false
 activatedtoggle13 = false
 activatedtoggle14 = false
+activatedtoggle15 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -676,11 +677,32 @@ local ToggleBomb2 = farm:CreateToggle({
 
 local farmingsectrob = farm:CreateSection("rob")
 
-local Buttonall4 = farm:CreateButton({
+local Buttonrob1 = farm:CreateButton({
 	Name = "Fling yourself (for 2nd quest)",
 	Callback = function()
 		grabcharacter()
 		Character:FindFirstChild("HumanoidRootPart").Velocity = Vector3.new(0, 0, 999999999999)
+	end,
+})
+
+local Togglerob1 = farm:CreateToggle({
+	Name = "Spam transform",
+	CurrentValue = false,
+	Flag = "rob1", 
+	Callback = function(Value)
+		activatedtoggle14 = not activatedtoggle14
+		while nil == nil do
+			if activatedtoggle14 == true then
+				local args = {
+					[1] = false
+				}
+
+				game:GetService("ReplicatedStorage"):WaitForChild("rob"):FireServer(unpack(args))
+				task.wait(0)
+			else
+				break
+			end
+		end
 	end,
 })
 
@@ -842,6 +864,56 @@ local Togglebombalt1 = altfarm:CreateToggle({
 					teleportplayer()
 				until char.Ragdolled.Value
 				reset()
+				lp.CharacterAdded:Wait()
+				repeat task.wait(0)
+					redefinecharacter()
+				until char:FindFirstChild("HumanoidRootPart") ~= nil
+			else
+				break
+			end
+		end
+	end,
+})
+
+local farmingsectrob = altfarm:CreateSection("rob")
+
+local Toggle8 = altfarm:CreateToggle({
+	Name = "Loop rob",
+	CurrentValue = false,
+	Flag = "altrob1", 
+	Callback = function(Value)
+		activatedtoggle16 = not activatedtoggle16
+		local lp = game.Players.LocalPlayer
+		local char = lp.Character
+		local targettp = workspace:FindFirstChild(altfarmtargetplayer)
+
+		local function teleportin()
+			local teleportportal = workspace.Lobby.Teleport1
+			firetouchinterest(char.HumanoidRootPart, teleportportal, 0)
+			-- red lines are wrong, this works regardless.
+		end
+
+		local function teleportplayer()
+			local offsetCFrame = CFrame.new(0, 0, 2)
+			char.HumanoidRootPart.CFrame = targettp.HumanoidRootPart.CFrame:ToWorldSpace(offsetCFrame)
+			char.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		end
+
+		local function redefinecharacter()
+			lp = game.Players.LocalPlayer
+			char = lp.Character
+		end
+		while nil == nil do	
+			if activatedtoggle16 == true then
+				redefinecharacter()
+				repeat task.wait(0)
+					teleportin()
+				until char:FindFirstChild("isInArena").Value
+				task.wait(0)
+				repeat task.wait(0)
+					teleportplayer()
+				until char.Ragdolled.Value
+
 				lp.CharacterAdded:Wait()
 				repeat task.wait(0)
 					redefinecharacter()
