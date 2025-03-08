@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [6.4]",
+	Name = "SB mastery gui [6.5]",
 	LoadingTitle = "wow plank I MEAN FORT",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -719,7 +719,7 @@ local Togglefort = farm:CreateToggle({
 		while nil == nil do	
 			if activatedtoggle17 == true then
 				game:GetService("ReplicatedStorage"):WaitForChild("Fortlol"):FireServer()
-				task.wait(3.1)
+				task.wait(4)
 			else
 				break
 			end
