@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [6.3]",
-	LoadingTitle = "is that rob!??!",
+	Name = "SB mastery gui [6.4]",
+	LoadingTitle = "wow plank I MEAN FORT",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -52,6 +52,8 @@ activatedtoggle12 = false
 activatedtoggle13 = false
 activatedtoggle14 = false
 activatedtoggle15 = false
+activatedtoggle16 = false
+activatedtoggle17 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -699,6 +701,25 @@ local Togglerob1 = farm:CreateToggle({
 
 				game:GetService("ReplicatedStorage"):WaitForChild("rob"):FireServer(unpack(args))
 				task.wait(0)
+			else
+				break
+			end
+		end
+	end,
+})
+
+local farmingsectrob = farm:CreateSection("Fort")
+
+local Togglefort = farm:CreateToggle({
+	Name = "Spam fort",
+	CurrentValue = false,
+	Flag = "fort1", 
+	Callback = function(Value)
+		activatedtoggle17 = not activatedtoggle17
+		while nil == nil do	
+			if activatedtoggle17 == true then
+				game:GetService("ReplicatedStorage"):WaitForChild("Fortlol"):FireServer()
+				task.wait(3.1)
 			else
 				break
 			end
