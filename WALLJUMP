@@ -1,0 +1,133 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "Funny Walljump lolz",
+	LoadingTitle = "100% didnt build off a tutorial",
+	LoadingSubtitle = "By @ThemanWhoYaps",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil, 
+		FileName = "Example Hub"
+	},
+	Discord = {
+		Enabled = false,
+		Invite = "noinvitelink", 
+		RememberJoins = true 
+	},
+	KeySystem = false, 
+	KeySettings = {
+		Title = "Key | Youtube Hub",
+		Subtitle = "Key System",
+		Note = "Key In Discord Server",
+		FileName = "YoutubeHubKey1",
+		SaveKey = false,
+		GrabKeyFromSite = true, 
+		Key = {"https://pastebin.com/raw/AtgzSPWK"} 
+	}
+})
+
+xzforce = 41
+yforce = 41
+enabled = false
+
+local Tab = Window:CreateTab("Main", "eye")
+
+local Toggle = Tab:CreateToggle({
+	Name = "Walljump enabled",
+	CurrentValue = false,
+	Flag = "walljump1", 
+	Callback = function(Value)
+		enabled = Value
+	end,
+})
+
+local Sliderxz = Tab:CreateSlider({
+	Name = "Horizontal boost",
+	Range = {40, 160},
+	Increment = 10,
+	Suffix = "Force",
+	CurrentValue = 41,
+	Flag = "xzslider", 
+	Callback = function(Value)
+		xzforce = Value
+	end,
+})
+
+local Sliderxz = Tab:CreateSlider({
+	Name = "Vertical boost",
+	Range = {40, 160},
+	Increment = 10,
+	Suffix = "Force",
+	CurrentValue = 41,
+	Flag = "yslider", 
+	Callback = function(Value)
+		yforce = Value
+	end,
+})
+
+local USER_INPUT_SERVICE = game:GetService("UserInputService")
+local RUN_SERVICE = game:GetService("RunService")
+local Character = game.Players.LocalPlayer.Character
+local RootPart = Character:WaitForChild("HumanoidRootPart")
+local Humanoid = Character:WaitForChild("Humanoid")
+
+local LastJump = tick()
+
+Humanoid.Touched:Connect(function(hit,touchpart)
+	local ray = Ray.new(RootPart.Position, RootPart.CFrame.LookVector * 2.5)
+	local part, point, normal = workspace:FindPartOnRay(ray, Character)
+
+	if part and tick() - LastJump > 0.1 and touchpart.Name == "HumanoidRootPart" and enabled then
+		RootPart.Anchored = true
+		Humanoid.AutoRotate = false
+		Humanoid.PlatformStand = true
+		RootPart.CFrame = CFrame.new(RootPart.Position, RootPart.Position + normal)
+
+		local jumped = false
+		local begin = tick()
+
+		spawn(function()
+			USER_INPUT_SERVICE.JumpRequest:Wait()
+			jumped = true
+		end)
+
+		repeat
+			RUN_SERVICE.Heartbeat:Wait() 
+		until jumped or tick() - begin > 5
+
+		local loggedcframe = RootPart.CFrame
+		local shockwavehost = Instance.new("Part")
+		shockwavehost.Parent = game.Workspace
+		local offsetCFrame = CFrame.new(0, 0, 0)
+		shockwavehost.CFrame = loggedcframe:ToWorldSpace(offsetCFrame)
+		shockwavehost.CFrame *= CFrame.fromEulerAngles(-1.5, 0, 0)
+		shockwavehost.Anchored = true
+		shockwavehost.CanCollide = false
+		shockwavehost.Name = "Shockwave"
+
+		local specialmesh = Instance.new("SpecialMesh")
+		specialmesh.Parent = shockwavehost
+		specialmesh.MeshId = "rbxassetid://20329976"
+		specialmesh.Scale = Vector3.new(3, 1, 3)
+
+		task.spawn(function()
+			for i = 0, 1, 0.03 do
+				shockwavehost.Transparency = i
+				specialmesh.Scale = specialmesh.Scale + Vector3.new(0.3, 0, 0.3)
+				task.wait(0)
+			end
+			shockwavehost:Destroy()
+		end)
+
+		LastJump = tick()
+		RootPart.Anchored = false
+		Humanoid.AutoRotate = true
+		Humanoid.PlatformStand = false
+
+		if jumped then
+			RootPart.Velocity = Vector3.new(xzforce * normal.X, 50 * normal.Y + yforce, xzforce * normal.Z)
+		else
+			RootPart.Velocity = Vector3.new()
+		end
+	end
+end)
