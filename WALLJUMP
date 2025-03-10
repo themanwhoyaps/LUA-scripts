@@ -77,7 +77,7 @@ Humanoid.Touched:Connect(function(hit,touchpart)
 	local ray = Ray.new(RootPart.Position, RootPart.CFrame.LookVector * 2.5)
 	local part, point, normal = workspace:FindPartOnRay(ray, Character)
 
-	if part and tick() - LastJump > 0.1 and touchpart.Name == "HumanoidRootPart" and enabled and touchpart.CanCollide == true then
+	if part and tick() - LastJump > 0.1 and touchpart.Name == "HumanoidRootPart" and enabled and touchpart.CanTouch == true then
 		RootPart.Anchored = true
 		Humanoid.AutoRotate = false
 		Humanoid.PlatformStand = true
