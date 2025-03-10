@@ -1,0 +1,140 @@
+-- sell clothes: game:GetService("ReplicatedStorage").Events.DropClothesInChute:FireServer()
+-- grab clothes game:GetService("ReplicatedStorage").Events.GrabClothing:FireServer()
+-- buy machine: game:GetService("ReplicatedStorage").Events.BuyWashingMachine:InvokeServer(-- washing machine id)
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "Laundry Simulator hub1!1!",
+	LoadingTitle = "Im loading pls wait",
+	LoadingSubtitle = "By @ThemanWhoYaps",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil, 
+		FileName = "Example Hub"
+	},
+	Discord = {
+		Enabled = false,
+		Invite = "noinvitelink", 
+		RememberJoins = true 
+	},
+	KeySystem = false, 
+	KeySettings = {
+		Title = "Key | Youtube Hub",
+		Subtitle = "Key System",
+		Note = "Key In Discord Server",
+		FileName = "YoutubeHubKey1",
+		SaveKey = false,
+		GrabKeyFromSite = true, 
+		Key = {"https://pastebin.com/raw/AtgzSPWK"} 
+	}
+})
+
+if game.PlaceId ~= 6305942109 then
+	Rayfield:Notify({
+		Title = "This isnt a universal script",
+		Content = "wrong game bozo",
+		Duration = 5,
+		Image = "angry",
+	})
+end
+
+
+
+local pl = game.Players.LocalPlayer.Character
+local farm = Window:CreateTab("Everything", "tractor")
+local misc = Window:CreateTab("Extra stuff", "settings-2")
+local farmsect = farm:CreateSection("Auto Farming")
+local miscsect = misc:CreateSection("Miscellaneous")
+local activatedtoggle1 = false
+
+local Button = misc:CreateButton({
+	Name = "Shut down hub",
+	Callback = function()
+		Rayfield:Destroy()
+	end,
+})
+local Button2= farm:CreateButton({
+	Name = "Fill basket",
+	Callback = function()
+		local basketsize = game:GetService("Players").LocalPlayer.NonSaveVars.BasketSize.Value
+		local homecframe = pl.HumanoidRootPart.CFrame
+		local currentplot = game:GetService("Players").LocalPlayer.NonSaveVars.OwnsPlot.Value
+			if currentplot == nil then
+				Rayfield:Notify({
+				Title = "Claim a plot first",
+				Content = "ill let that slide lil bro",
+				Duration = 3,
+				Image = "angry",
+			})
+			end
+			
+		for i = 0, basketsize, 1 do
+			local clothearray = {game.Workspace.Debris.Clothing:FindFirstChild("Shirt"), game.Workspace.Debris.Clothing:FindFirstChild("Underpants"), game.Workspace.Debris.Clothing:FindFirstChild("Sock"), game.Workspace.Debris.Clothing:FindFirstChild("Sweater"), game.Workspace.Debris.Clothing:FindFirstChild("Towel")}
+			local parttarget = clothearray[math.random(1,5)]
+			pl.HumanoidRootPart.CFrame = parttarget.CFrame
+			game:GetService("ReplicatedStorage").Events.GrabClothing:FireServer(parttarget)
+			task.wait(0.12)
+		end
+		pl.HumanoidRootPart.CFrame = homecframe
+		
+	end,
+})
+
+local Toggle = farm:CreateToggle({
+	Name = "Auto sell carried clean clothes",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+			activatedtoggle1 = not activatedtoggle1
+		while nil == nil do
+			if activatedtoggle1 == true then
+				dropclothes()
+				task.wait(4)
+			else
+				break
+			end
+		end
+	end,
+})
+
+function dropclothes()
+	local homecframedrop = pl.HumanoidRootPart.CFrame
+	pl.HumanoidRootPart.CFrame = CFrame.new(-146.888, 7.43100023, -10.9969997, 0, 0, 1, 0, 1, 0, -1, 0, 0)
+	task.wait(0.09)
+	game:GetService("ReplicatedStorage").Events.DropClothesInChute:FireServer()
+	pl.HumanoidRootPart.CFrame = homecframedrop
+end
+
+local tpsect = farm:CreateSection("Teleport Locations")
+
+local Button = farm:CreateButton({
+	Name = "Your Plot",
+	Callback = function()
+		local currentplot = game:GetService("Players").LocalPlayer.NonSaveVars.OwnsPlot.Value
+		if currentplot == nil then
+			Rayfield:Notify({
+				Title = "Claim a plot first",
+				Content = "ill let that slide lil bro",
+				Duration = 3,
+				Image = "angry",
+			})
+		end
+		pl.HumanoidRootPart.CFrame = currentplot.WorldPivot
+	end,
+})
+
+local Button = farm:CreateButton({
+	Name = "Archys Hardware",
+	Callback = function()
+		pl.HumanoidRootPart.CFrame = CFrame.new(166.4785, 4.65100384, 1.25343013, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	end,
+})
+
+local Button = farm:CreateButton({
+	Name = "Pet Barn",
+	Callback = function()
+		pl.HumanoidRootPart.CFrame = CFrame.new(120.063095, 4.52432966, 50.5732613, 0.384315372, 0.00416734768, -0.923192441, 0.00703995349, 0.999947488, 0.00744448369, 0.923175037, -0.00936026126, 0.38426584)
+	end,
+})
+
