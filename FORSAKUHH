@@ -1,0 +1,148 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+	Name = "Forfreaky gui [1.0]",
+	LoadingTitle = "Frontflips are lame",
+	LoadingSubtitle = "By @ThemanWhoYaps",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil, 
+		FileName = "Example Hub"
+	},
+	Discord = {
+		Enabled = false,
+		Invite = "noinvitelink", 
+		RememberJoins = true 
+	},
+	KeySystem = false, 
+	KeySettings = {
+		Title = "Key | Youtube Hub",
+		Subtitle = "Key System",
+		Note = "Key In Discord Server",
+		FileName = "YoutubeHubKey1",
+		SaveKey = false,
+		GrabKeyFromSite = true, 
+		Key = {"https://pastebin.com/raw/AtgzSPWK"} 
+	}
+})
+
+local Troll = Window:CreateTab("Trolls", "banana")
+
+local trollabel = Troll:CreateSection("Trolling, all buttons made by me :D")
+
+local ButtonRun = Troll:CreateButton({
+	Name = "Pathfinding Sprint",
+	Callback = function()
+		local isspeed = false
+		local char = game.Players.LocalPlayer.Character
+
+		local PathfindingService = game:GetService("PathfindingService")
+		local TweenService = game:GetService("TweenService")
+		local Debris = game:GetService("Debris")
+		local Players = game:GetService("Players")
+		local Camera = game.Workspace.Camera
+
+		local player = Players.LocalPlayer
+
+		local mouse = player:GetMouse()
+		local map = workspace.Map.Ingame.Map
+
+		Camera.CameraType = Enum.CameraType.Scriptable
+		local CameraPart = Instance.new("Part")
+		Debris:AddItem(CameraPart, 2)
+		CameraPart.CFrame = map.WorldPivot
+		CameraPart.Position = CameraPart.Position + Vector3.new(0, 200, 0)
+		CameraPart.Orientation = Vector3.new(-90, 0, 0)
+		CameraPart.CanCollide = false
+		CameraPart.Anchored = true
+		CameraPart.Parent = game.Workspace
+
+		local goal = {}
+		goal.CFrame = CameraPart.CFrame
+
+		local tweenInfo = TweenInfo.new(
+			0.5, -- Time
+			Enum.EasingStyle.Cubic, -- EasingStyle
+			Enum.EasingDirection.Out, -- EasingDirection
+			0, -- RepeatCount (when less than zero the tween will loop indefinitely)
+			false, -- Reverses (tween will reverse once reaching its goal)
+			0 -- DelayTime
+		)
+
+		local tween = TweenService:Create(Camera, tweenInfo, goal)
+		tween:Play()
+
+		local fog = game:GetService("Lighting"):FindFirstChild("Atmosphere")
+		if fog == nil then
+
+		else
+			fog.Parent = game.Workspace
+		end
+
+		local Outline = Instance.new("Highlight")
+		Outline.FillColor = Color3.new(0, 1, 0)
+		Outline.FillTransparency = 0.85
+		Outline.Parent = char
+		
+		Rayfield:Notify({
+			Title = "Info",
+			Content = "Click/Tap a surface to run to it.",
+			Duration = 5,
+			Image = "lightbulb",
+		})
+
+		connection = mouse.Button1Down:Connect(function()
+			connection:Disconnect()
+			local mousepos = mouse.Hit.Position
+			local Marker = Instance.new("Part")
+			Marker.Size = Vector3.new(10, 10, 10)
+			Marker.Transparency = 1
+			Marker.Shape = "Ball"
+			Marker.Position = mousepos
+			Marker.Material = "Neon"
+			Marker.CanCollide = false
+			Marker.Anchored = true
+			Marker.Parent = game.Workspace
+
+			local goal = {}
+			goal.Size = Vector3.new(1, 1, 1)
+			goal.Transparency = 0
+
+			local tweenInfo = TweenInfo.new(
+				1, -- Time
+				Enum.EasingStyle.Cubic, -- EasingStyle
+				Enum.EasingDirection.Out, -- EasingDirection
+				0, -- RepeatCount (when less than zero the tween will loop indefinitely)
+				false, -- Reverses (tween will reverse once reaching its goal)
+				0 -- DelayTime
+			)
+
+			local tween = TweenService:Create(Marker, tweenInfo, goal)
+			tween:Play()
+
+			local humanoid = char:WaitForChild("Humanoid")
+			local goalPart = Marker
+
+			local path = PathfindingService:CreatePath()
+
+			local success, errorMessage = pcall(function()
+				path:ComputeAsync(char.PrimaryPart.Position, goalPart.Position)
+			end)
+
+			if success then
+				isspeed = true
+				for _,waypoint in pairs(path:GetWaypoints()) do
+					char.SpeedMultipliers.Sprinting.Value = 5
+					humanoid:MoveTo(waypoint.Position)
+					humanoid.MoveToFinished:Wait()
+				end
+			end
+
+			Camera.CameraType = Enum.CameraType.Custom
+			Marker:Destroy()
+			Outline:Destroy()
+			fog.Parent = game.Lighting
+			char.SpeedMultipliers.Sprinting.Value = 1
+		end)
+	end,
+})
