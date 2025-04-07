@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "Forfreaky gui [1.0]",
+	Name = "Forfreaky gui [1.1]",
 	LoadingTitle = "Frontflips are lame",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -26,7 +26,14 @@ local Window = Rayfield:CreateWindow({
 	}
 })
 
+-- VARIABLES
+local Killerfolder = workspace.Players.Killers
+local Survivorfolder = workspace.Players.Survivors
+togglekilleresp = false
+togglesurvivoresp = false
+
 local Troll = Window:CreateTab("Trolls", "banana")
+local Use = Window:CreateTab("Actual Cheats", "cuboid")
 
 local trollabel = Troll:CreateSection("Trolling, all buttons made by me :D")
 
@@ -146,3 +153,100 @@ local ButtonRun = Troll:CreateButton({
 		end)
 	end,
 })
+
+
+
+
+
+
+local Uselabel = Use:CreateSection("Actually useful stuff, all buttons & toggles made by me :D")
+
+local Toggle0 = Troll:CreateToggle({
+	Name = "Highlight Killer(s)",
+	CurrentValue = false,
+	Flag = "KILLERESP", 
+	Callback = function(Value)
+		togglekilleresp = not togglekilleresp
+		if togglekilleresp == true then
+			local Killers = Killerfolder:GetChildren()
+			for i, v in Killers do
+				local outline = Instance.new("Highlight")
+				outline.FillColor = Color3.new(1, 0.447059, 0.454902)
+				outline.FillTransparency = 0.7
+				outline.OutlineColor = Color3.new(0.356863, 0, 0.00784314)
+				outline.Name = "ESPHIGHLIGHT"
+				outline.Parent = v
+			end			
+		end
+		while nil == nil do
+			if togglekilleresp == true then
+				task.wait(0)
+			else
+				local Killers = Killerfolder:GetChildren()
+				for i, v in Killers do
+					local found = v:FindFirstChild("ESPHIGHLIGHT")
+					if found ~= nil then
+						found:Destroy()
+					end
+				end	
+				break
+			end
+		end
+	end,
+})
+
+Killerfolder.ChildAdded:Connect(function(child)
+	if togglekilleresp == true then
+		local outline = Instance.new("Highlight")
+		outline.FillColor = Color3.new(1, 0.447059, 0.454902)
+		outline.FillTransparency = 0.7
+		outline.OutlineColor = Color3.new(0.356863, 0, 0.00784314)
+		outline.Name = "ESPHIGHLIGHT"
+		outline.Parent = child
+	end
+end)
+
+local Toggle1 = Troll:CreateToggle({
+	Name = "Highlight Survivors(s)",
+	CurrentValue = false,
+	Flag = "SURVIVORESP", 
+	Callback = function(Value)
+		togglesurvivoresp = not togglesurvivoresp
+		if togglesurvivoresp == true then
+			local Survivors = Survivorfolder:GetChildren()
+			for i, v in Survivors do
+				local outline = Instance.new("Highlight")
+				outline.FillColor = Color3.new(0.631373, 1, 0.435294)
+				outline.FillTransparency = 0.7
+				outline.OutlineColor = Color3.new(0.105882, 0.356863, 0)
+				outline.Name = "ESPHIGHLIGHT-S"
+				outline.Parent = v
+			end			
+		end
+		while nil == nil do
+			if togglesurvivoresp == true then
+				task.wait(0)
+			else
+				local Survivors = Survivorfolder:GetChildren()
+				for i, v in Survivors do
+					local found = v:FindFirstChild("ESPHIGHLIGHT-S")
+					if found ~= nil then
+						found:Destroy()
+					end
+				end	
+				break
+			end
+		end
+	end,
+})
+
+Survivorfolder.ChildAdded:Connect(function(child)
+	if togglesurvivoresp == true then
+		local outline = Instance.new("Highlight")
+		outline.FillColor = Color3.new(0.631373, 1, 0.435294)
+		outline.FillTransparency = 0.7
+		outline.OutlineColor = Color3.new(0.105882, 0.356863, 0)
+		outline.Name = "ESPHIGHLIGHT-S"
+		outline.Parent = child
+	end
+end)
