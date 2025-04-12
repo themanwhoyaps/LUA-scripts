@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "Forfreaky gui [1.1]",
+	Name = "Forfreaky gui [1.2]",
 	LoadingTitle = "Frontflips are lame",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -29,8 +29,38 @@ local Window = Rayfield:CreateWindow({
 -- VARIABLES
 local Killerfolder = workspace.Players.Killers
 local Survivorfolder = workspace.Players.Survivors
+localcharacter = game.Players.LocalPlayer.Character
+ShootButton = LocalPlayer.PlayerGui.MainUI.AbilityContainer:FindFirstChild("Shoot")
+LocalPlayer = game:GetService("Players").LocalPlayer
+Mouse = LocalPlayer:GetMouse()
 togglekilleresp = false
 togglesurvivoresp = false
+toggleaimbot = false
+
+-- FUNCTIONS
+function redefinecharacter()
+	localcharacter = game.Players.LocalPlayer.Character
+	ShootButton = LocalPlayer.PlayerGui.MainUI.AbilityContainer:FindFirstChild("Shoot")
+	LocalPlayer = game:GetService("Players").LocalPlayer
+	Mouse = LocalPlayer:GetMouse()
+end
+
+function chanceaimbot()
+	redefinecharacter()
+	if toggleaimbot == true then
+		if ShootButton:FindFirstChild("NoCharges") == nil then
+			print("clicked")
+			for i = 0, 30, 1 do
+				task.wait(0)
+				for i, v in Killerfolder:GetChildren() do
+					local HRP = v:FindFirstChild("HumanoidRootPart")
+					local MHRP = localcharacter:FindFirstChild("HumanoidRootPart")
+					MHRP.CFrame = CFrame.lookAt(MHRP.Position, HRP.Position)
+				end
+			end
+		end
+	end
+end
 
 local Troll = Window:CreateTab("Trolls", "banana")
 local Use = Window:CreateTab("Actual Cheats", "cuboid")
@@ -161,7 +191,7 @@ local ButtonRun = Troll:CreateButton({
 
 local Uselabel = Use:CreateSection("Actually useful stuff, all buttons & toggles made by me :D")
 
-local Toggle0 = Troll:CreateToggle({
+local Toggle0 = Use:CreateToggle({
 	Name = "Highlight Killer(s)",
 	CurrentValue = false,
 	Flag = "KILLERESP", 
@@ -206,7 +236,7 @@ Killerfolder.ChildAdded:Connect(function(child)
 	end
 end)
 
-local Toggle1 = Troll:CreateToggle({
+local Toggle1 = Use:CreateToggle({
 	Name = "Highlight Survivors(s)",
 	CurrentValue = false,
 	Flag = "SURVIVORESP", 
@@ -248,5 +278,27 @@ Survivorfolder.ChildAdded:Connect(function(child)
 		outline.OutlineColor = Color3.new(0.105882, 0.356863, 0)
 		outline.Name = "ESPHIGHLIGHT-S"
 		outline.Parent = child
+	end
+end)
+
+local ToggleChanceAimbot = Use:CreateToggle({
+	Name = "Aimbot (Chance)",
+	CurrentValue = false,
+	Flag = "LOOKATKILLERS", 
+	Callback = function(Value)
+		toggleaimbot = not toggleaimbot
+	end,
+})
+
+ShootButton = LocalPlayer.PlayerGui.MainUI.AbilityContainer:FindFirstChild("Shoot")
+
+ShootButton.MouseButton1Click:Connect(function()
+	chanceaimbot()
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+	if input.KeyCode == Enum.KeyCode.E then
+		print("key E pressed")
+		chanceaimbot()
 	end
 end)
