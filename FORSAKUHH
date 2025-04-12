@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "Forfreaky gui [1.2]",
+	Name = "Forfreaky gui [1.3]",
 	LoadingTitle = "Frontflips are lame",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
@@ -30,8 +30,8 @@ local Window = Rayfield:CreateWindow({
 local Killerfolder = workspace.Players.Killers
 local Survivorfolder = workspace.Players.Survivors
 localcharacter = game.Players.LocalPlayer.Character
-ShootButton = LocalPlayer.PlayerGui.MainUI.AbilityContainer:FindFirstChild("Shoot")
 LocalPlayer = game:GetService("Players").LocalPlayer
+ShootButton = LocalPlayer.PlayerGui.MainUI.AbilityContainer:FindFirstChild("Shoot")
 Mouse = LocalPlayer:GetMouse()
 togglekilleresp = false
 togglesurvivoresp = false
