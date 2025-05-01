@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "SB mastery gui [6.5]",
-	LoadingTitle = "wow plank I MEAN FORT",
+	Name = "SB mastery gui [6.6]",
+	LoadingTitle = "Space of the spacing",
 	LoadingSubtitle = "By @ThemanWhoYaps",
 	ConfigurationSaving = {
 		Enabled = false,
@@ -54,6 +54,7 @@ activatedtoggle14 = false
 activatedtoggle15 = false
 activatedtoggle16 = false
 activatedtoggle17 = false
+activatedtoggle18 = false
 
 player = game.Players.LocalPlayer
 Character = player.Character
@@ -720,6 +721,40 @@ local Togglefort = farm:CreateToggle({
 			if activatedtoggle17 == true then
 				game:GetService("ReplicatedStorage"):WaitForChild("Fortlol"):FireServer()
 				task.wait(4)
+			else
+				break
+			end
+		end
+	end,
+})
+
+local farmingsectspace = farm:CreateSection("Space")
+
+local Togglespace = farm:CreateToggle({
+	Name = "Spam space (with auto slap)",
+	CurrentValue = false,
+	Flag = "space1", 
+	Callback = function(Value)
+
+		local function swait()
+			game:GetService("RunService").Stepped:wait()
+		end
+
+		activatedtoggle18 = not activatedtoggle18
+		while nil == nil do	
+			if activatedtoggle18 == true then
+				game:GetService("ReplicatedStorage"):WaitForChild("ZeroGSound"):FireServer()
+				task.wait(6)
+				for i, v in game.Players:GetChildren() do
+					local playerchar = v.Character
+
+					local args = {
+						playerchar:WaitForChild("Right Arm")
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("HtSpace"):FireServer(unpack(args))
+					swait()
+				end
+				task.wait(1)
 			else
 				break
 			end
