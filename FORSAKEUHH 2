@@ -17,6 +17,9 @@ local function highlightObject(object : Instance, objType : string)
 	elseif objType == "misc" then
 		newFloatGUI.Parent = object
 		if object:IsA("Model") then
+			if object.Name == "Map" then
+				return
+			end
 			local objcframe, objsize = object:GetBoundingBox()
 			newFloatGUI.StudsOffset = Vector3.new(0, objsize.Y + 1, 0)
 		else
