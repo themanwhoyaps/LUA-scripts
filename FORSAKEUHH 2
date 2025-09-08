@@ -1,24 +1,32 @@
 -- functions lol
 
-local function highlightObject(object : Instance, evil : boolean)
+local function highlightObject(object : Instance, evil : boolean, idkwhatthisis : boolean)
 	local newKillerHighlight = Instance.new("Highlight")
 	local newFloatGUI = Instance.new("BillboardGui")
 	local newTextlabel = Instance.new("TextLabel")
 	newTextlabel.Parent = newFloatGUI
 	-- fallback incase hrp doesnt exist
-	if object:WaitForChild("HumanoidRootPart", 5) == nil then
+	if object:WaitForChild("HumanoidRootPart", 1) == nil then
 		newFloatGUI.Parent = object
+
+		if object:IsA("Model") then
+			local objcframe, objsize = object:GetBoundingBox()
+			newFloatGUI.StudsOffset = Vector3.new(0, objsize.Y + 1, 0)
+		else
+			newFloatGUI.StudsOffset = Vector3.new(0, 3.5, 0)
+		end
+
 	else 
 		newFloatGUI.Parent = object:FindFirstChild("HumanoidRootPart")
+		newFloatGUI.StudsOffset = Vector3.new(0, 3.5, 0)
 	end
-	
+
 	newFloatGUI.Name = "espBillboard"
 	newKillerHighlight.Parent = object
-	
-	newFloatGUI.ExtentsOffsetWorldSpace = Vector3.new(0, 3.5, 0)
+
 	newFloatGUI.Size = UDim2.new(10, 0, 1.5, 0)
 	newFloatGUI.AlwaysOnTop = true
-	
+
 	newTextlabel.Size = UDim2.new(1, 0, 1, 0)
 	newTextlabel.FontFace.Bold = true
 	newTextlabel.TextScaled = true
@@ -26,19 +34,27 @@ local function highlightObject(object : Instance, evil : boolean)
 	newTextlabel.TextStrokeTransparency = 0
 	newTextlabel.FontFace = Font.fromName("Roboto", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
 	newTextlabel.Text = object.Name
-	
-	if evil then
-		newKillerHighlight.Name = "evilHighlightLMAO"
-		newKillerHighlight.FillColor = Color3.fromRGB(208, 0, 0)
-		newKillerHighlight.OutlineColor = Color3.fromRGB(153, 1, 1)
-		
-		newTextlabel.TextColor3 = Color3.fromRGB(225, 93, 95)
+
+	if idkwhatthisis then
+		newKillerHighlight.Name = "mehHighlightLMAO"
+		newKillerHighlight.FillColor = Color3.fromRGB(208, 208, 208)
+		newKillerHighlight.OutlineColor = Color3.fromRGB(153, 153, 153)
+
+		newTextlabel.TextColor3 = Color3.fromRGB(198, 198, 198)
 	else
-		newKillerHighlight.Name = "coolHighlightLMAO"
-		newKillerHighlight.FillColor = Color3.fromRGB(132, 132, 0)
-		newKillerHighlight.OutlineColor = Color3.fromRGB(199, 189, 52)
-		
-		newTextlabel.TextColor3 = Color3.fromRGB(255, 242, 58)
+		if evil then
+			newKillerHighlight.Name = "evilHighlightLMAO"
+			newKillerHighlight.FillColor = Color3.fromRGB(208, 0, 0)
+			newKillerHighlight.OutlineColor = Color3.fromRGB(153, 1, 1)
+
+			newTextlabel.TextColor3 = Color3.fromRGB(225, 93, 95)
+		else
+			newKillerHighlight.Name = "coolHighlightLMAO"
+			newKillerHighlight.FillColor = Color3.fromRGB(132, 132, 0)
+			newKillerHighlight.OutlineColor = Color3.fromRGB(199, 189, 52)
+
+			newTextlabel.TextColor3 = Color3.fromRGB(255, 242, 58)
+		end
 	end
 end
 
@@ -75,8 +91,10 @@ end
 -- more boring variables lol
 local killerfolder = workspace.Players.Killers
 local survivorfolder = workspace.Players.Survivors
+local ingamefolder = workspace.Map.Ingame
 local killerESPWatch
 local survivorESPWatch
+local miscESPWatch
 
 -- ui setup (yawn)
 
@@ -95,11 +113,11 @@ local killerESP = sf:CreateToggle({
 	Callback = function(Value)
 		if Value then
 			for i, killerChar in killerfolder:GetChildren() do
-				highlightObject(killerChar, true)
+				highlightObject(killerChar, true, false)
 			end
 			
 			killerESPWatch = killerfolder.ChildAdded:Connect(function(object)
-				highlightObject(object, true)
+				highlightObject(object, true, false)
 			end)
 		else
 			if killerESPWatch then
@@ -123,11 +141,11 @@ local survivorESP = sf:CreateToggle({
 	Callback = function(Value)
 		if Value then
 			for i, survivorChar in survivorfolder:GetChildren() do
-				highlightObject(survivorChar, false)
+				highlightObject(survivorChar, false, false)
 			end
 
 			survivorESPWatch = survivorfolder.ChildAdded:Connect(function(object)
-				highlightObject(object, false)
+				highlightObject(object, false, false)
 			end)
 		else
 			if survivorESPWatch then
@@ -142,5 +160,34 @@ local survivorESP = sf:CreateToggle({
 			end
 		end
 		
+	end,
+})
+
+local miscESP = sf:CreateToggle({
+	Name = "Highlight misc",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		if Value then
+			for i, randomObj in ingamefolder:GetChildren() do
+				highlightObject(randomObj, false, true)
+			end
+
+			miscESPWatch = ingamefolder.ChildAdded:Connect(function(object)
+				highlightObject(object, false, true)
+			end)
+		else
+			if miscESPWatch then
+				miscESPWatch:Disconnect()
+				miscESPWatch = nil
+			end
+
+			for i, v in ingamefolder:GetDescendants() do
+				if v.Name == "mehHighlightLMAO" or v.Name == "espBillboard" then
+					v:Destroy()
+				end
+			end
+		end
+
 	end,
 })
