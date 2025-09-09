@@ -1,3 +1,14 @@
+-- what are these called again
+local Debris = game:GetService("Debris")
+
+-- more boring variables lol
+local killerfolder = workspace.Players.Killers
+local survivorfolder = workspace.Players.Survivors
+local ingamefolder = workspace.Map.Ingame
+local killerESPWatch
+local survivorESPWatch
+local miscESPWatch
+
 -- functions lol
 
 local function highlightObject(object : Instance, objType : string)
@@ -63,6 +74,51 @@ local function highlightObject(object : Instance, objType : string)
 	end
 end
 
+local function Relocate()
+	-- animation: 140042539182927
+	local STUNTIME = 2.5
+
+	local Character = game.Players.LocalPlayer.Character
+	local SpawnPoints = ingamefolder:FindFirstChild("Map"):WaitForChild("SpawnPoints"):WaitForChild("Survivors"):GetChildren()
+	local goalspawnpoint = SpawnPoints[math.random(1, #SpawnPoints)]
+
+	local humanoid = Character:FindFirstChild("Humanoid")
+	local hrp = Character:FindFirstChild("HumanoidRootPart")
+	local animator = humanoid:WaitForChild("Animator")
+	local sfx = Instance.new("Sound")
+	local tempanimObject = Instance.new("Animation")
+
+	tempanimObject.Parent = humanoid
+	tempanimObject.AnimationId = "rbxassetid://140042539182927"
+	Debris:AddItem(tempanimObject, 5)
+	sfx.Name = "fakeTPSFX"
+	sfx.Parent = hrp
+	sfx.SoundId = "rbxassetid://125253972523701"
+	Debris:AddItem(sfx, 10)
+	local tpTrack = animator:LoadAnimation(tempanimObject)
+
+	-- halt player
+	local folderSpeed = Character:FindFirstChild("SpeedMultipliers")
+	if folderSpeed ~= nil then
+		local newHaltNumberValue = Instance.new("NumberValue")
+		Debris:AddItem(newHaltNumberValue, STUNTIME)
+		newHaltNumberValue.Parent = folderSpeed
+		newHaltNumberValue.Name = "bwahahaISortaBalancedThisXD"
+	end
+
+	tpTrack:Play()
+	sfx:Play()
+
+	task.spawn(function()
+		task.wait(STUNTIME)
+		tpTrack:Stop()
+	end)
+
+	task.wait(1.5)
+
+	Character:MoveTo(goalspawnpoint.Position)
+end
+
 -- setup yawn
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -92,14 +148,6 @@ if game.PlaceId ~= 18687417158 then
 	Rayfield:Destroy()
 	return
 end
-
--- more boring variables lol
-local killerfolder = workspace.Players.Killers
-local survivorfolder = workspace.Players.Survivors
-local ingamefolder = workspace.Map.Ingame
-local killerESPWatch
-local survivorESPWatch
-local miscESPWatch
 
 -- ui setup (yawn)
 
@@ -194,5 +242,24 @@ local miscESP = sf:CreateToggle({
 			end
 		end
 
+	end,
+})
+
+-- // objects for unsafe functions //
+
+local relocateButton = uf:CreateButton({
+	Name = "Relocate",
+	Callback = function()
+		Relocate()
+	end,
+})
+
+local relocateKeybind = uf:CreateKeybind({
+	Name = "Relocate Keybind",
+	CurrentKeybind = "T",
+	HoldToInteract = false,
+	Flag = "Keybind1",
+	Callback = function(Keybind)
+		Relocate()
 	end,
 })
