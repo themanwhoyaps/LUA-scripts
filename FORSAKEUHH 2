@@ -77,6 +77,12 @@ local function highlightObject(object : Instance, objType : string)
 		newKillerHighlight.OutlineColor = Color3.fromRGB(199, 189, 52)
 
 		newTextlabel.TextColor3 = Color3.fromRGB(255, 242, 58)
+	elseif objType == "generator" then
+		newKillerHighlight.Name = "puzzleHighlightLMAO"
+		newKillerHighlight.FillColor = Color3.fromRGB(132, 0, 132)
+		newKillerHighlight.OutlineColor = Color3.fromRGB(186, 0, 199)
+
+		newTextlabel.TextColor3 = Color3.fromRGB(242, 53, 255)
 	end
 	
 	newKillerHighlight.Destroying:Once(function()
@@ -242,7 +248,7 @@ local survivorESP = sf:CreateToggle({
 })
 
 local miscESP = sf:CreateToggle({
-	Name = "Highlight misc",
+	Name = "Highlight miscellaneous",
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
@@ -269,6 +275,40 @@ local miscESP = sf:CreateToggle({
 
 	end,
 })
+
+local genESP = sf:CreateToggle({
+	Name = "Highlight generators",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		if Value then
+			for i, randomObj in ingamefolder:FindFirstChild("Map"):GetChildren() do
+				if randomObj.Name == "Generator" or randomObj.Name == "FakeGenerator" then
+					highlightObject(randomObj, "generator")
+				end
+			end
+
+			miscESPWatch = ingamefolder:WaitForChild("Map").ChildAdded:Connect(function(object)
+				if object.Name == "Generator" or object.Name == "FakeGenerator" then
+					highlightObject(object, "generator")
+				end
+			end)
+		else
+			if miscESPWatch then
+				miscESPWatch:Disconnect()
+				miscESPWatch = nil
+			end
+
+			for i, v in ingamefolder:WaitForChild("Map"):GetDescendants() do
+				if v.Name == "puzzleHighlightLMAO" or v.Name == "espBillboard" then
+					v:Destroy()
+				end
+			end
+		end
+
+	end,
+})
+
 
 -- // objects for unsafe functions //
 
