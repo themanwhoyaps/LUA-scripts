@@ -8,6 +8,8 @@ local ingamefolder = workspace.Map.Ingame
 local killerESPWatch
 local survivorESPWatch
 local miscESPWatch
+local fillTransparency = 0.5
+local existingHighlights = {}
 
 -- functions lol
 
@@ -15,7 +17,6 @@ local function highlightObject(object : Instance, objType : string)
 	local newKillerHighlight = Instance.new("Highlight")
 	local newFloatGUI = Instance.new("BillboardGui")
 	local newTextlabel = Instance.new("TextLabel")
-	newTextlabel.Parent = newFloatGUI
 
 	-- different modes for different modes lol
 	if objType == "evil" then
@@ -41,6 +42,8 @@ local function highlightObject(object : Instance, objType : string)
 
 	newFloatGUI.Name = "espBillboard"
 	newKillerHighlight.Parent = object
+	table.insert(existingHighlights, newKillerHighlight)
+	print(existingHighlights)
 
 	newFloatGUI.Size = UDim2.new(50, 0, 1.5, 0)
 	newFloatGUI.AlwaysOnTop = true
@@ -72,6 +75,10 @@ local function highlightObject(object : Instance, objType : string)
 
 		newTextlabel.TextColor3 = Color3.fromRGB(255, 242, 58)
 	end
+	
+	newKillerHighlight.Destroying:Once(function() 
+		table.remove(existingHighlights, newKillerHighlight)	
+	end)
 end
 
 local function Relocate()
@@ -158,6 +165,18 @@ local ufWarningSection = uf:CreateSection("These functions have a greater risk o
 local sfWarningSection = sf:CreateSection("These functions are undetectable and not easy to get banned with.")
 
 -- // objects for Safe Functions //
+
+local fillTransparency = sf:CreateSlider({
+	Name = "Highlight Fill Transparency",
+	Range = {0, 1},
+	Increment = 0.1,
+	Suffix = "Transparency",
+	CurrentValue = 0.5,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		fillTransparency = Value
+	end,
+})
 
 local killerESP = sf:CreateToggle({
 	Name = "Highlight killer(s)",
