@@ -76,8 +76,8 @@ local function highlightObject(object : Instance, objType : string)
 		newTextlabel.TextColor3 = Color3.fromRGB(255, 242, 58)
 	end
 	
-	newKillerHighlight.Destroying:Once(function() 
-		table.remove(existingHighlights, newKillerHighlight)	
+	newKillerHighlight.Destroying:Once(function()
+		table.remove(existingHighlights, table.find(existingHighlights, newKillerHighlight))	
 	end)
 end
 
