@@ -1,6 +1,8 @@
 -- what are these called again
 local Debris = game:GetService("Debris")
 local ProximityPromptService = game:GetService("ProximityPromptService")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
 
 -- more boring variables lol
 local killerfolder = workspace.Players.Killers
@@ -172,7 +174,116 @@ local function Relocate()
 	Character:MoveTo(goalspawnpoint.Position)
 end
 
+
+local function getMouseHit(ignoreList)
+	local mouse = game.Players.LocalPlayer:GetMouse()
+
+	local rayOrigin = workspace.CurrentCamera.CFrame.Position
+	local rayDirection = (mouse.Hit.Position - rayOrigin).Unit * 1000 -- long ray
+
+	local raycastParams = RaycastParams.new()
+	raycastParams.FilterDescendantsInstances = ignoreList or {}
+	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+
+	local result = workspace:Raycast(rayOrigin, rayDirection, raycastParams)
+
+	-- Skip transparent parts
+	while result and result.Instance and result.Instance.Transparency >= 1 do
+		table.insert(ignoreList, result.Instance)
+		raycastParams.FilterDescendantsInstances = ignoreList
+		result = workspace:Raycast(rayOrigin, rayDirection, raycastParams)
+	end
+
+	return result
+end
+
+local function spoofRush()
+	-- void rush animation: 126896426760253
+	-- void rush manual stop: 139321362207112
+	-- void rush sfx: 113037804008732
+	-- void rush manual end sfx: 105484443350662
+
+	local Character = game.Players.LocalPlayer.Character
+	local hrp = Character:FindFirstChild("HumanoidRootPart")
+	local humanoid = Character:FindFirstChildOfClass("Humanoid")
+	local animator = humanoid:WaitForChild("Animator")
+	local mouse = game.Players.LocalPlayer:GetMouse()
+
+	local sfx = Instance.new("Sound")
+	sfx.Parent = Character
+	sfx.SoundId = "rbxassetid://113037804008732"
+	Debris:AddItem(sfx, 10)
+	local endsfx = Instance.new("Sound")
+	endsfx.Parent = Character
+	endsfx.SoundId = "rbxassetid://105484443350662"
+	Debris:AddItem(endsfx, 2)
+
+	local animation = Instance.new("Animation")
+	animation.Parent = humanoid
+	animation.AnimationId = "rbxassetid://126896426760253"
+	local voidRushTrack = animator:LoadAnimation(animation)
+	animation.AnimationId = "rbxassetid://139321362207112"
+	local voidStopRushTrack = animator:LoadAnimation(animation)
+
+	local result = getMouseHit({})
+	local mousepos = result.Position
+
+	hrp.Anchored = true
+	local goalpos = mousepos + Vector3.new(0, 3, 0)
+
+	local cfValue = Instance.new("CFrameValue")
+	cfValue.Value = hrp.CFrame
+	cfValue.Parent = hrp
+
+	local goalCFrame = CFrame.new(mousepos + Vector3.new(0, 3, 0))
+
+	local tweenInfo = TweenInfo.new(
+		1, -- Time
+		Enum.EasingStyle.Linear, -- EasingStyle
+		Enum.EasingDirection.Out, -- EasingDirection
+		0, -- RepeatCount (when less than zero the tween will loop indefinitely)
+		false, -- Reverses (tween will reverse once reaching its goal)
+		0 -- DelayTime
+	)
+	local tween = TweenService:Create(cfValue, tweenInfo, { Value = goalCFrame })
+
+	local running = true
+
+	local connection
+	connection = RunService.Heartbeat:Connect(function()
+		if not running then
+			connection:Disconnect()
+			return
+		end
+
+		local currentPos = cfValue.Value.Position
+
+		-- If you want to keep the HRP upright, flatten Y on look target:
+		-- local lookTarget = Vector3.new(goalpos.X, currentPos.Y, goalpos.Z)
+
+		hrp.CFrame = CFrame.lookAt(currentPos, goalpos)
+	end)
+
+	-- MOOOVEEE
+
+	sfx:Play()
+	tween:Play()
+	voidRushTrack:Play()
+
+	task.wait(1)
+	running = false
+
+	sfx:Stop()
+	endsfx:Play()
+	voidRushTrack:Stop()
+	voidStopRushTrack:Play()
+	hrp.Anchored = false
+end
+
 local function highlightGenerators()
+	if currentMap:GetChildren() == nil then
+		return
+	end
 	for i, randomObj in currentMap:GetChildren() do
 		if randomObj.Name == "Generator" or randomObj.Name == "FakeGenerator" then
 			highlightObject(randomObj, "generator")
@@ -421,6 +532,23 @@ local relocateKeybind = uf:CreateKeybind({
 	Flag = "Keybind1",
 	Callback = function(Keybind)
 		Relocate()
+	end,
+})
+
+local spoofRushButton = uf:CreateButton({
+	Name = "SpoofRush",
+	Callback = function()
+		spoofRush()
+	end,
+})
+
+local spoofRushKeybind = uf:CreateKeybind({
+	Name = "SpoofRush Keybind",
+	CurrentKeybind = "Y",
+	HoldToInteract = false,
+	Flag = "Keybind1",
+	Callback = function(Keybind)
+		spoofRush()
 	end,
 })
 
