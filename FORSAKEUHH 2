@@ -5,6 +5,7 @@ local Debris = game:GetService("Debris")
 local killerfolder = workspace.Players.Killers
 local survivorfolder = workspace.Players.Survivors
 local ingamefolder = workspace.Map.Ingame
+local currentMap
 local killerESPWatch
 local survivorESPWatch
 local miscESPWatch
@@ -98,7 +99,7 @@ local function Relocate()
 	local STUNTIME = 2.5
 
 	local Character = game.Players.LocalPlayer.Character
-	local SpawnPoints = ingamefolder:FindFirstChild("Map"):WaitForChild("SpawnPoints"):WaitForChild("Survivors"):GetChildren()
+	local SpawnPoints = currentMap:WaitForChild("SpawnPoints"):WaitForChild("Survivors"):GetChildren()
 	local goalspawnpoint = SpawnPoints[math.random(1, #SpawnPoints)]
 
 	local humanoid = Character:FindFirstChild("Humanoid")
@@ -167,6 +168,21 @@ if game.PlaceId ~= 18687417158 then
 	Rayfield:Destroy()
 	return
 end
+
+-- background processes
+
+task.spawn(function()
+	-- always find the current map
+	while nil == nil do
+		task.wait(1)
+		local Model = ingamefolder:FindFirstChild("Map")
+		if Model == nil then
+			currentMap = nil
+		else
+			currentMap = Model
+		end
+	end
+end)
 
 -- ui setup (yawn)
 
@@ -284,7 +300,7 @@ local genESP = sf:CreateToggle({
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
-		if ingamefolder:FindFirstChild("Map") == nil then
+		if currentMap == nil then
 			Rayfield:Notify({
 				Title = "Forsaken Whatever",
 				Content = "Wait until the map exists",
@@ -296,13 +312,13 @@ local genESP = sf:CreateToggle({
 		end
 		
 		if Value then
-			for i, randomObj in ingamefolder:FindFirstChild("Map"):GetChildren() do
+			for i, randomObj in currentMap:GetChildren() do
 				if randomObj.Name == "Generator" or randomObj.Name == "FakeGenerator" then
 					highlightObject(randomObj, "generator")
 				end
 			end
 
-			gensESPWatch = ingamefolder:FindFirstChild("Map").ChildAdded:Connect(function(object)
+			gensESPWatch = currentMap.ChildAdded:Connect(function(object)
 				if object.Name == "Generator" or object.Name == "FakeGenerator" then
 					highlightObject(object, "generator")
 				end
@@ -313,7 +329,7 @@ local genESP = sf:CreateToggle({
 				gensESPWatch = nil
 			end
 
-			for i, v in ingamefolder:FindFirstChild("Map"):GetDescendants() do
+			for i, v in currentMap:GetDescendants() do
 				if v.Name == "puzzleHighlightLMAO" or v.Name == "espBillboard" then
 					v:Destroy()
 				end
