@@ -283,14 +283,28 @@ local genESP = sf:CreateToggle({
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
+		if ingamefolder:FindFirstChild("Map") == nil then
+			Rayfield:Notify({
+				Title = "Forsaken Whatever",
+				Content = "Wait until the map exists",
+				Duration = 3,
+				Image = "triangle-alert",
+			})
+			
+			genESP:Set(false)
+			return
+		end
+		
+		local Map = ingamefolder:WaitForChild("Map")
+		
 		if Value then
-			for i, randomObj in ingamefolder:FindFirstChild("Map"):GetChildren() do
+			for i, randomObj in Map:GetChildren() do
 				if randomObj.Name == "Generator" or randomObj.Name == "FakeGenerator" then
 					highlightObject(randomObj, "generator")
 				end
 			end
 
-			miscESPWatch = ingamefolder:WaitForChild("Map").ChildAdded:Connect(function(object)
+			miscESPWatch = Map.ChildAdded:Connect(function(object)
 				if object.Name == "Generator" or object.Name == "FakeGenerator" then
 					highlightObject(object, "generator")
 				end
@@ -301,7 +315,7 @@ local genESP = sf:CreateToggle({
 				miscESPWatch = nil
 			end
 
-			for i, v in ingamefolder:WaitForChild("Map"):GetDescendants() do
+			for i, v in Map:GetDescendants() do
 				if v.Name == "puzzleHighlightLMAO" or v.Name == "espBillboard" then
 					v:Destroy()
 				end
@@ -328,5 +342,31 @@ local relocateKeybind = uf:CreateKeybind({
 	Flag = "Keybind1",
 	Callback = function(Keybind)
 		Relocate()
+	end,
+})
+
+local autoGen = uf:CreateToggle({
+	Name = "Automatically Fix Generators",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		local Map = ingamefolder:WaitForChild("Map")
+
+		if Value then
+			for i, randomObj in Map:GetChildren() do
+				if randomObj.Name == "Generator" then
+					
+					randomObj:WaitForChild("Remotes"):WaitForChild("RF").OnClientInvoke:Connect(function()
+						print(randomObj)
+					end)
+					
+				end
+			end
+			
+			
+		else
+			
+		end
+
 	end,
 })
