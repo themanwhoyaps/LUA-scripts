@@ -12,9 +12,39 @@ local miscESPWatch
 local gensESPWatch
 local fillTransparency = 0.5
 local existingHighlights = {}
+local listeners = {}
 
 -- functions lol
 
+local function on(eventName, callback)
+	if not listeners[eventName] then
+		listeners[eventName] = {}
+	end
+	table.insert(listeners[eventName], callback)
+end
+
+local function broadcast(eventName, ...)
+	local eventListeners = listeners[eventName]
+	if eventListeners then
+		for _, callback in ipairs(eventListeners) do
+			task.spawn(callback, ...)
+		end
+	end
+end
+
+local function off(eventName, callback)
+	local eventListeners = listeners[eventName]
+	if not eventListeners then return end
+
+	for i, cb in ipairs(eventListeners) do
+		if cb == callback then
+			table.remove(eventListeners, i)
+			break
+		end
+	end
+end
+
+-- huge giant highlight object function (but its used alot so hahahah)
 local function highlightObject(object : Instance, objType : string)
 	local newKillerHighlight = Instance.new("Highlight")
 	local newFloatGUI = Instance.new("BillboardGui")
@@ -89,6 +119,7 @@ local function highlightObject(object : Instance, objType : string)
 		newTextlabel.TextColor3 = Color3.fromRGB(242, 53, 255)
 	end
 	
+	-- removes it from the backend uhhh idk i wrote this comment like a month after i wrote the code what the hell is wrong with me
 	newKillerHighlight.Destroying:Once(function()
 		table.remove(existingHighlights, table.find(existingHighlights, newKillerHighlight))	
 	end)
@@ -139,7 +170,15 @@ local function Relocate()
 	Character:MoveTo(goalspawnpoint.Position)
 end
 
--- setup yawn
+local function highlightGenerators()
+	for i, randomObj in currentMap:GetChildren() do
+		if randomObj.Name == "Generator" or randomObj.Name == "FakeGenerator" then
+			highlightObject(randomObj, "generator")
+		end
+	end
+end
+
+-- rafield setup yawn
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
@@ -157,6 +196,7 @@ local Window = Rayfield:CreateWindow({
 	DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 })
 
+-- for stupid people
 if game.PlaceId ~= 18687417158 then
 	Rayfield:Notify({
 		Title = "Forsaken Whatever",
@@ -169,7 +209,7 @@ if game.PlaceId ~= 18687417158 then
 	return
 end
 
--- background processes
+-- background processe(s)
 
 task.spawn(function()
 	-- always find the current map
@@ -182,8 +222,13 @@ task.spawn(function()
 			currentMap = Model
 			print(currentMap:GetFullName())
 		end
+		-- broadcasts :3
+		
+		broadcast("highlightGens")
 	end
 end)
+
+-- subscriptions
 
 -- ui setup (yawn)
 
@@ -318,17 +363,29 @@ local genESP = sf:CreateToggle({
 					highlightObject(randomObj, "generator")
 				end
 			end
-
+			
+			on("highlightGens", highlightGenerators)
+			
+			--[[
+			this is a archive
+			
 			gensESPWatch = currentMap.ChildAdded:Connect(function(object)
 				if object.Name == "Generator" or object.Name == "FakeGenerator" then
 					highlightObject(object, "generator")
 				end
 			end)
+			]]
 		else
+			--[[
+			this is a archive
+			
 			if gensESPWatch then
 				gensESPWatch:Disconnect()
 				gensESPWatch = nil
 			end
+			]]
+			
+			off("highlightGens", highlightGenerators)
 
 			for i, v in currentMap:GetDescendants() do
 				if v.Name == "puzzleHighlightLMAO" or v.Name == "espBillboard" then
