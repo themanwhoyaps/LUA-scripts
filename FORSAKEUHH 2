@@ -229,7 +229,7 @@ local function spoofRush()
 	local result = getMouseHit({})
 	local mousepos = result.Position
 
-	hrp.Anchored = true
+	-- hrp.Anchored = true
 	local goalpos = mousepos + Vector3.new(0, 4, 0)
 
 	local cfValue = Instance.new("CFrameValue")
