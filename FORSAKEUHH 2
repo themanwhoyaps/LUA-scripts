@@ -8,6 +8,7 @@ local ingamefolder = workspace.Map.Ingame
 local killerESPWatch
 local survivorESPWatch
 local miscESPWatch
+local gensESPWatch
 local fillTransparency = 0.5
 local existingHighlights = {}
 
@@ -291,31 +292,28 @@ local genESP = sf:CreateToggle({
 				Image = "triangle-alert",
 			})
 			
-			genESP:Set(false)
 			return
 		end
 		
-		local Map = ingamefolder:WaitForChild("Map")
-		
 		if Value then
-			for i, randomObj in Map:GetChildren() do
+			for i, randomObj in ingamefolder:FindFirstChild("Map"):GetChildren() do
 				if randomObj.Name == "Generator" or randomObj.Name == "FakeGenerator" then
 					highlightObject(randomObj, "generator")
 				end
 			end
 
-			miscESPWatch = Map.ChildAdded:Connect(function(object)
+			gensESPWatch = ingamefolder:FindFirstChild("Map").ChildAdded:Connect(function(object)
 				if object.Name == "Generator" or object.Name == "FakeGenerator" then
 					highlightObject(object, "generator")
 				end
 			end)
 		else
-			if miscESPWatch then
-				miscESPWatch:Disconnect()
-				miscESPWatch = nil
+			if gensESPWatch then
+				gensESPWatch:Disconnect()
+				gensESPWatch = nil
 			end
 
-			for i, v in Map:GetDescendants() do
+			for i, v in ingamefolder:FindFirstChild("Map"):GetDescendants() do
 				if v.Name == "puzzleHighlightLMAO" or v.Name == "espBillboard" then
 					v:Destroy()
 				end
