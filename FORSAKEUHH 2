@@ -180,30 +180,6 @@ local function highlightGenerators()
 	end
 end
 
-local function checkForAutoGens(Checking : boolean)
-	if Checking == true then
-		watchForAutoGen = ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
-			local model = prompt.Parent.Parent
-			if model:IsDescendantOf(currentMap) then
-				if model:IsA("Model") then
-					for i = 1, 5, 1 do
-						model.Remotes.RE:FireServer()
-
-						task.wait(1)
-					end
-				end
-			end
-		end)
-		
-	else
-		if watchForAutoGen then
-			watchForAutoGen:Disconnect()
-			watchForAutoGen = nil
-		end
-	end
-	
-end
-
 -- rafield setup yawn
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -260,8 +236,6 @@ task.spawn(function()
 end)
 
 -- subscriptions
-
-on("autoGens", checkForAutoGens)
 
 -- ui setup (yawn)
 
@@ -470,9 +444,26 @@ local autoGen = uf:CreateToggle({
 		end
 
 		if Value then
-			broadcast("autoGens", checkForAutoGens, true)
+			watchForAutoGen = ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
+				print(prompt)
+				print(player)
+				local model = prompt.Parent.Parent
+				print(model)
+				if model:IsDescendantOf(currentMap) then
+					if model:IsA("Model") then
+						for i = 1, 5, 1 do
+							model.Remotes.RE:FireServer()
+
+							task.wait(1)
+						end
+					end
+				end
+			end)
 		else
-			broadcast("autoGens", checkForAutoGens, false)
+			if watchForAutoGen then
+				watchForAutoGen:Disconnect()
+				watchForAutoGen = nil
+			end
 		end
 	end,
 })
