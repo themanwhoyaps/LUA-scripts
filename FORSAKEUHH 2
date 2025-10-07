@@ -213,7 +213,6 @@ local function spoofRush()
 	local sfx = Instance.new("Sound")
 	sfx.Parent = Character
 	sfx.SoundId = "rbxassetid://113037804008732"
-	sfx.Looped = true
 	Debris:AddItem(sfx, 10)
 	local endsfx = Instance.new("Sound")
 	endsfx.Parent = Character
@@ -571,8 +570,6 @@ local autoGen = uf:CreateToggle({
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
-		-- MODIFY THIS TO ACTUALLY MAKE THE GENS WORK
-		
 		
 		if currentMap == nil then
 			Rayfield:Notify({
