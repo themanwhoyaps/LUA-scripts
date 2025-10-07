@@ -15,7 +15,7 @@ local miscESPWatch
 local gensESPWatch
 local watchForAutoGen
 local fillTransparency = 0.5
-local spoofrushspeed = 5
+local spoofrushspeed = 1
 local existingHighlights = {}
 local listeners = {}
 
