@@ -11,7 +11,7 @@ local killerESPWatch
 local survivorESPWatch
 local miscESPWatch
 local gensESPWatch
-local watchForAutoGen = false
+local watchForAutoGen
 local fillTransparency = 0.5
 local existingHighlights = {}
 local listeners = {}
@@ -194,7 +194,14 @@ local function checkForAutoGens(Checking : boolean)
 				end
 			end
 		end)
+		
+	else
+		if watchForAutoGen then
+			watchForAutoGen:Disconnect()
+			watchForAutoGen = nil
+		end
 	end
+	
 end
 
 -- rafield setup yawn
