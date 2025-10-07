@@ -180,8 +180,8 @@ task.spawn(function()
 			currentMap = nil
 		else
 			currentMap = Model
+			print(currentMap:GetFullName())
 		end
-		print(currentMap:GetFullName())
 	end
 end)
 
