@@ -213,7 +213,9 @@ end
 
 task.spawn(function()
 	-- always find the current map
+	local previousmap = nil
 	while nil == nil do
+		previousmap = currentMap
 		task.wait(1)
 		local Model = ingamefolder:FindFirstChild("Map")
 		if Model == nil then
@@ -222,9 +224,12 @@ task.spawn(function()
 			currentMap = Model
 			print(currentMap:GetFullName())
 		end
-		-- broadcasts :3
 		
-		broadcast("highlightGens")
+		-- broadcasts :3
+		if previousmap ~= currentMap then
+			broadcast("highlightGens")
+			print("highlightgensbroadcasted")
+		end
 	end
 end)
 
