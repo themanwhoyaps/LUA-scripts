@@ -213,6 +213,7 @@ local function spoofRush()
 	local sfx = Instance.new("Sound")
 	sfx.Parent = Character
 	sfx.SoundId = "rbxassetid://113037804008732"
+	sfx.Looped = true
 	Debris:AddItem(sfx, 10)
 	local endsfx = Instance.new("Sound")
 	endsfx.Parent = Character
@@ -260,9 +261,9 @@ local function spoofRush()
 		local currentPos = cfValue.Value.Position
 
 		-- If you want to keep the HRP upright, flatten Y on look target:
-		-- local lookTarget = Vector3.new(goalpos.X, currentPos.Y, goalpos.Z)
+		local lookTarget = Vector3.new(goalpos.X, currentPos.Y, goalpos.Z)
 
-		hrp.CFrame = CFrame.lookAt(currentPos, goalpos)
+		hrp.CFrame = CFrame.lookAt(currentPos, lookTarget)
 	end)
 
 	-- MOOOVEEE
