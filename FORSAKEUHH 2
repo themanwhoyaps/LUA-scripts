@@ -520,7 +520,7 @@ local genESP = sf:CreateToggle({
 })
 
 local eventESP = sf:CreateToggle({
-	Name = "Highlight event currency",
+	Name = "[🎃] Highlight event currency",
 	CurrentValue = false,
 	Flag = "Toggle1",
 	Callback = function(Value)
@@ -571,16 +571,6 @@ local relocateButton = uf:CreateButton({
 	end,
 })
 
-local relocateKeybind = uf:CreateKeybind({
-	Name = "Relocate Keybind",
-	CurrentKeybind = "T",
-	HoldToInteract = false,
-	Flag = "Keybind1",
-	Callback = function(Keybind)
-		Relocate()
-	end,
-})
-
 local spoofRushSpeed = uf:CreateSlider({
 	Name = "SpoofRush Time",
 	Range = {1, 10},
@@ -596,16 +586,6 @@ local spoofRushSpeed = uf:CreateSlider({
 local spoofRushButton = uf:CreateButton({
 	Name = "SpoofRush",
 	Callback = function()
-		spoofRush()
-	end,
-})
-
-local spoofRushKeybind = uf:CreateKeybind({
-	Name = "SpoofRush Keybind",
-	CurrentKeybind = "Y",
-	HoldToInteract = false,
-	Flag = "Keybind1",
-	Callback = function(Keybind)
 		spoofRush()
 	end,
 })
