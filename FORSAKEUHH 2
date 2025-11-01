@@ -13,6 +13,9 @@ local killerESPWatch
 local survivorESPWatch
 local miscESPWatch
 local gensESPWatch
+
+local eventESPWatch
+
 local watchForAutoGen
 local fillTransparency = 0.5
 local spoofrushspeed = 1
@@ -508,6 +511,48 @@ local genESP = sf:CreateToggle({
 
 			for i, v in currentMap:GetDescendants() do
 				if v.Name == "puzzleHighlightLMAO" or v.Name == "espBillboard" then
+					v:Destroy()
+				end
+			end
+		end
+
+	end,
+})
+
+local eventESP = sf:CreateToggle({
+	Name = "Highlight event currency",
+	CurrentValue = false,
+	Flag = "Toggle1",
+	Callback = function(Value)
+		local currencyFolder = ingamefolder:FindFirstChild("CurrencyLocations")
+		
+		if currencyFolder == nil then
+			Rayfield:Notify({
+				Title = "Forsakuhh Whatever",
+				Content = "The folder for collectables doesnt exist, wait a bit then re-enable.",
+				Duration = 3,
+				Image = "triangle-alert",
+			})
+
+			return
+		end
+		
+		if Value then
+			for i, randomObj in currencyFolder:GetChildren() do
+				highlightObject(randomObj, "misc")
+			end
+
+			eventESPWatch = currencyFolder.ChildAdded:Connect(function(object)
+				highlightObject(object, "misc")
+			end)
+		else
+			if eventESPWatch then
+				eventESPWatch:Disconnect()
+				eventESPWatch = nil
+			end
+
+			for i, v in currencyFolder:GetDescendants() do
+				if v.Name == "mehHighlightLMAO" or v.Name == "espBillboard" then
 					v:Destroy()
 				end
 			end
